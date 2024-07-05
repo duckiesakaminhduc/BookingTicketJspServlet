@@ -1,0 +1,9 @@
+<decorators>
+    <excludes>
+        <pattern>/error.jsp</pattern>
+        <pattern>/fund-list.json*</pattern>
+    </excludes>
+    <decorator name="default" webapp="/decorators" page="/decorators/1/financial.jsp">
+        <pattern>/*</pattern>
+    </decorator>
+</decorators>

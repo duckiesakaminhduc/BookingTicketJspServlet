@@ -1,0 +1,356 @@
+* {
+    box-sizing: border-box;
+    background-color: #0F172A;
+    color: #F8FAFC; }
+
+.sec__detail {
+    margin: 0 auto;
+    width: 1200px; }
+.sec__detail .detail {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin: 0px 2em; }
+.sec__detail .detail__img .attach {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+.sec__detail .detail__img .attach .type__movie {
+    font-family: "Anton", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    left: 0; }
+.sec__detail .detail__img .attach .type__movie .txt {
+    padding: 8px;
+    background-color: #FF9933;
+    color: #0F172A; }
+.sec__detail .detail__img .attach .type__movie .num {
+    background-color: #FF0033;
+    padding: 8px; }
+.sec__detail .detail__info > div,
+.sec__detail .detail__info > ul {
+    margin-bottom: 30px; }
+.sec__detail .detail__info {
+    margin: 0px 2em; }
+.sec__detail .detail__info h3 {
+    font-family: "Josefin Sans", sans-serif; }
+.sec__detail .detail__info * {
+    margin-bottom: 10px; }
+.sec__detail .detail__info--title h1 {
+    font-family: "Anton", sans-serif;
+    font-size: 3em;
+    margin-top: 20px; }
+.sec__detail .detail__info--detail {
+    padding-left: 0px; }
+.sec__detail .detail__info--detail li {
+    font-size: 1.2em;
+    text-decoration: none;
+    list-style: none;
+    font-family: "Josefin Sans", sans-serif; }
+.sec__detail .detail__info--detail li span {
+    margin-left: 20px; }
+.sec__detail .detail__info--content p {
+    font-family: "Josefin Sans", sans-serif;
+    line-height: 1.5em; }
+.sec__detail .detail__info--describe--detail {
+    padding-left: 0px; }
+.sec__detail .detail__info--describe--detail li {
+    font-family: "Josefin Sans", sans-serif;
+    list-style: none; }
+.sec__detail .detail__info--trailer {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center; }
+.sec__detail .detail__info--trailer * {
+    margin-bottom: 0px;
+    margin-right: 8px; }
+.sec__detail .detail__info--trailer img {
+    width: 35px; }
+.sec__detail .detail__info--trailer a {
+    font-family: "Josefin Sans", sans-serif;
+    text-decoration: none;
+    font-size: 1.2em; }
+
+.detail__img {
+    position: relative; }
+
+.sh__time--wrapper .shtime__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 40px; }
+.sh__time--wrapper .shtime__header--title {
+    font-family: "Anton", sans-serif; }
+.sh__time--wrapper .shtime__header--timelist {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; }
+.sh__time--wrapper .shtime__header--timelist .box-time {
+    margin-right: 20px;
+    margin-left: 20px;
+    background-color: #F3EA28;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Josefin Sans", sans-serif;
+    padding: 20px;
+    border-radius: 10px; }
+.sh__time--wrapper .shtime__header--timelist .box-time .date-time {
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 1.2em; }
+.sh__time--wrapper .shtime__header--timelist .box-time .date-time span,
+.sh__time--wrapper .shtime__header--timelist .box-time .day-time span {
+    color: #663399;
+    background-color: #F3EA28; }
+
+.sh__time--wrapper .shtime__body--header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center; }
+.sh__time--wrapper .shtime__body--header h2 {
+    font-family: "Anton", sans-serif;
+    margin-left: 0px; }
+.sh__time--wrapper .shtime__body--header .list__cinestar > i {
+    color: #F3EA28; }
+.sh__time--wrapper .shtime__body--header .list__cinestar #list {
+    color: #F3EA28;
+    padding: 10px;
+    border: none; }
+
+.sh__time--wrapper .item__cinestar {
+    background-color: #663399;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 60%;
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-bottom: 16px;
+    padding-bottom: 16px; }
+.sh__time--wrapper .item__cinestar * {
+    background-color: #663399; }
+.sh__time--wrapper .item__cinestar .title__cinestar h2 {
+    font-family: "Josefin Sans", sans-serif;
+    margin-left: 0px;
+    color: #F3EA28;
+    margin-bottom: 0; }
+.sh__time--wrapper .item__cinestar .title__cinestar input[type="radio"] {
+    display: none; }
+.sh__time--wrapper .item__cinestar .title__cinestar .collapse__shtime {
+    overflow: hidden;
+    max-height: 0;
+    transition: all 0.4s ease-out; }
+.sh__time--wrapper .item__cinestar .title__cinestar .collapse__shtime .list__shtime li {
+    margin-bottom: 16px;
+    list-style: none; }
+.sh__time--wrapper .item__cinestar .title__cinestar .collapse__shtime .tt {
+    margin-bottom: 16px; }
+.sh__time--wrapper .item__cinestar .title__cinestar .collapse__shtime .list__shtime {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    padding-left: 0; }
+.sh__time--wrapper .item__cinestar .title__cinestar .collapse__shtime .list__shtime li {
+    padding: 8px 10px;
+    border-radius: 5px;
+    color: white;
+    border: 1px solid white;
+    cursor: pointer; }
+.sh__time--wrapper .item__cinestar .title__cinestar .collapse__shtime .list__shtime li:hover {
+    color: #F3EA28;
+    border: 1px solid #F3EA28;
+    transition: all 0.2s ease-in; }
+
+.shtime__item.enable {
+    color: #F3EA28 !important;
+    border: 1px solid #F3EA28 !important;
+    background-size: 100% 100%; }
+
+.title__cinestar input[type="radio"]:checked + label + .collapse__shtime {
+    max-height: 400px;
+    padding-bottom: 20px; }
+
+.ticket .ticket-choice {
+    text-align: center;
+    margin-top: 44px;
+    padding-bottom: 17px; }
+
+.wrapper__ticket--box {
+    margin: 10px 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+.wrapper__ticket--box .ticket__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #94A3B8;
+    padding: 15px 37px;
+    border-radius: 5px;
+    margin: 0 15px;
+    width: 15%; }
+.wrapper__ticket--box .ticket__item * {
+    margin-bottom: 10px; }
+.wrapper__ticket--box .ticket__item:hover {
+    border: 2px solid #F3EA28;
+    transition: all 0.2s ease-in; }
+.wrapper__ticket--box .ticket__item .content__bottom {
+    padding: 10px 15px;
+    width: 70%;
+    border-radius: 5px;
+    background-color: #94A3B8;
+    cursor: pointer; }
+.wrapper__ticket--box .ticket__item .content__bottom .count {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+    justify-content: space-between;
+    background-color: #94A3B8; }
+.wrapper__ticket--box .ticket__item .content__bottom .count * {
+    color: #0F172A;
+    font-size: 1.2em;
+    background-color: #94A3B8;
+    margin-bottom: 0; }
+.wrapper__ticket--box .ticket__item .content__bottom .count .minus_f,
+.wrapper__ticket--box .ticket__item .content__bottom .count .plus_f,
+.wrapper__ticket--box .ticket__item .content__bottom .count .minus_s,
+.wrapper__ticket--box .ticket__item .content__bottom .count .plus_s,
+.wrapper__ticket--box .ticket__item .content__bottom .count .minus_t,
+.wrapper__ticket--box .ticket__item .content__bottom .count .plus_t {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%; }
+.wrapper__ticket--box .ticket__item .content__bottom .count .minus_f:hover,
+.wrapper__ticket--box .ticket__item .content__bottom .count .plus_f:hover,
+.wrapper__ticket--box .ticket__item .content__bottom .count .minus_s:hover,
+.wrapper__ticket--box .ticket__item .content__bottom .count .plus_s:hover,
+.wrapper__ticket--box .ticket__item .content__bottom .count .minus_t:hover,
+.wrapper__ticket--box .ticket__item .content__bottom .count .plus_t:hover {
+    background-color: #663399; }
+
+.seat__main {
+    width: 70%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; }
+.seat__main .seat__table {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px; }
+.seat__main .seat__table .seat__row {
+    display: flex; }
+
+.seat__single {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; }
+
+.seat__row {
+    display: flex; }
+
+.empty {
+    width: 40px; }
+
+.seat__couple {
+    width: 80px;
+    margin-left: 6px;
+    height: 34.61px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    text-align: center; }
+.seat__couple img {
+    height: 100%; }
+
+.seat__table span {
+    font-size: 12px;
+    font-family: "Josefin Sans", sans-serif; }
+
+.seat__block {
+    position: relative;
+    margin: 3em auto;
+    width: 70%; }
+.seat__block img {
+    width: 100%; }
+.seat__block .txt {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-family: "Josefin Sans", sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+
+.seat__heading {
+    text-align: center;
+    font-size: 2em;
+    font-family: "Josefin Sans", sans-serif; }
+
+.ticket__item {
+    font-family: "Josefin Sans", sans-serif; }
+
+.collapse__shtime {
+    font-family: "Josefin Sans", sans-serif; }
+
+.modal {
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+
+#popup__wrapper {
+    z-index: 99;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    opacity: 90%; }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 20px;
+    border-radius: 5px;
+    background-color: #3E5AC0;
+    color: white;
+    font-size: 1.4em; }
+.content .noti__btn {
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #F3EA28;
+    cursor: pointer; }
+.content .noti__btn .txt {
+    background-color: #F3EA28;
+    color: #0F172A;
+    font-size: 1.4em; }
+
+.dp-none {
+    display: none !important; }
+
+.dp-block {
+    display: block !important; }
