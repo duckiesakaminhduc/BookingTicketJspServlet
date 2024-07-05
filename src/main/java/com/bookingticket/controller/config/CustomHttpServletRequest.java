@@ -5,20 +5,21 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import java.security.Principal;
 
 public class CustomHttpServletRequest extends HttpServletRequestWrapper {
-    public CustomHttpServletRequest(HttpServletRequest request) {
+    private CustomPrincipal customPrincipal;
+
+    public CustomHttpServletRequest(HttpServletRequest request, CustomPrincipal customPrincipal) {
         super(request);
+        this.customPrincipal = customPrincipal;
     }
 
     @Override
     public Principal getUserPrincipal() {
-        Principal myUser = (Principal) getSession().getAttribute("USER");
-        return myUser != null ? myUser : super.getUserPrincipal();
+        return this.customPrincipal;
     }
 
+//    Phương thức isUserInRole() trả về true nếu người dùng là ở một role đã cho, trả về false nếu họ là không
     @Override
     public boolean isUserInRole(String role) {
-        return getUserPrincipal() instanceof CustomPrincipal
-                && ((CustomPrincipal) getUserPrincipal()).isUserInRole(role)
-                || super.isUserInRole(role);
+        return this.customPrincipal.isUserInRole(role);
     }
 }

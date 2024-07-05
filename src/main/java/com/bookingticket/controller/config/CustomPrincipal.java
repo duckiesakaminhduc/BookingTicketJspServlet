@@ -13,10 +13,10 @@ public class CustomPrincipal implements Principal {
     private String password;
     private List<String> roles;
 
-    public CustomPrincipal(String username, String password, String... roles) {
+    public CustomPrincipal(String username, String password, List<String> roles) {
         this.username = username;
         this.password = password;
-        this.roles = Arrays.asList(roles);
+        this.roles = roles;
     }
 
     @Override

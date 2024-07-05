@@ -4,6 +4,9 @@ import com.bookingticket.controller.dao.UserDao;
 import com.bookingticket.controller.model.User;
 import com.bookingticket.controller.service.UserService;
 
+import java.util.List;
+import java.util.Map;
+
 public class UserServiceImp implements UserService {
     private UserDao userDao;
 
@@ -14,5 +17,15 @@ public class UserServiceImp implements UserService {
     @Override
     public boolean register(User user) {
         return userDao.register(user);
+    }
+
+    @Override
+    public boolean login(String username, String password) {
+        return userDao.login(username, password);
+    }
+
+    @Override
+    public Map<String, List<String>> mapRoles(String username) {
+        return userDao.mapRoles(username);
     }
 }
