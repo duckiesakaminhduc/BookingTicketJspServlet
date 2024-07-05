@@ -13,6 +13,6 @@
 <a href="views/web/book_movie.jsp">booking ticket</a>
 <a href="index.jsp">index</a>
 <a href="common/">Hello Servlet</a>
-
+<%--<a href="login.jsp/">Hello Servlet</a>--%>
 </body>
 </html>
