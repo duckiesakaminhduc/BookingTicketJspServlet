@@ -1,14 +1,18 @@
 package com.bookingticket.controller.model;
 
 
+import org.jdbi.v3.core.mapper.reflect.ColumnName;
+
 import java.util.List;
 
 public class User extends AbstractModel<User> {
+    @ColumnName("username")
     private String username;
+    @ColumnName("email")
     private String email;
+    @ColumnName("password")
     private String password;
-
-    private List<String> roles;
+    @ColumnName("status")
     private int status;
 
     public String getUsername() {
@@ -35,16 +39,6 @@ public class User extends AbstractModel<User> {
         this.password = password;
     }
 
-    @Override
-    public List<String> getRoles() {
-        return roles;
-    }
-
-    @Override
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
-    }
-
     public int getStatus() {
         return status;
     }
@@ -53,11 +47,10 @@ public class User extends AbstractModel<User> {
         this.status = status;
     }
 
-    public User(String username, String email, String password, List<String> roles, int status) {
+    public User(String username, String email, String password, int status) {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.roles = roles;
         this.status = status;
     }
 }

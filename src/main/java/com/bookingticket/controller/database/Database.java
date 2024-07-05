@@ -17,6 +17,7 @@ public class Database {
             e.getMessage();
             System.out.println("Fail");
         }
+
     }
 
     public static org.jdbi.v3.core.Jdbi getJdbi() {

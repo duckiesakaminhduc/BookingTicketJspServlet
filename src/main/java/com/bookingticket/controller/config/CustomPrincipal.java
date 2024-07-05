@@ -11,7 +11,6 @@ import java.util.List;
 public class CustomPrincipal implements Principal {
     private String username;
     private String password;
-
     private List<String> roles;
 
     public CustomPrincipal(String username, String password, String... roles) {
