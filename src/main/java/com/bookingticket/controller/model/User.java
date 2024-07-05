@@ -15,6 +15,26 @@ public class User extends AbstractModel<User> {
     @ColumnName("status")
     private int status;
 
+    private List<String> roles;
+
+    @Override
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    @Override
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public User(String username, String email, String password, int status, List<String> roles) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.status = status;
+        this.roles = roles;
+    }
+
     public String getUsername() {
         return username;
     }

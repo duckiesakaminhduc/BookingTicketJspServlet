@@ -11,7 +11,7 @@
 </head>
 <style>
     body{
-        background-image: url("../template/assets/images/background-login.jpg");
+        /*background-image: url("../template/assets/images/background-login.jpg");*/
     }
 
 </style>
@@ -30,7 +30,7 @@
 <div class = "wrapper">
     <div class = "form-box login">
         <h2>Đăng nhập</h2>
-        <form action="#">
+        <form action="register">
             <div class = "input-box">
                 <span class = "icon"></span>
                 <input type = "email" required>

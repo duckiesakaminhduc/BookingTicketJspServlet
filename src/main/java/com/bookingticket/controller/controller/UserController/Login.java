@@ -1,4 +1,4 @@
-package com.bookingticket.controller.controller;
+package com.bookingticket.controller.controller.UserController;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
