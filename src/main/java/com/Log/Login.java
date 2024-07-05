@@ -18,7 +18,7 @@ public class Login {
     }
 
     private boolean performAuthentication(String username, String password) {
-        // Ghi log xác thực đăng nhập 
+        // Ghi log xác thực đăng nhập
         return "admin".equals(username) && "password123".equals(password);
     }
 }
