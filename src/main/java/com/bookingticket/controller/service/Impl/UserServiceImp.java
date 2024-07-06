@@ -28,4 +28,9 @@ public class UserServiceImp implements UserService {
     public Map<String, List<String>> mapRoles(String username) {
         return userDao.mapRoles(username);
     }
+
+    @Override
+    public boolean resetPassword(String email, String password) {
+        return userDao.resetPassword(email,password);
+    }
 }

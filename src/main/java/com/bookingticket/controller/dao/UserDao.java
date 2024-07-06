@@ -16,4 +16,6 @@ public interface UserDao {
     boolean login(String username, String password);
 
     Map<String, List<String>> mapRoles(String username);
+
+    public boolean resetPassword(String email,String password);
 }

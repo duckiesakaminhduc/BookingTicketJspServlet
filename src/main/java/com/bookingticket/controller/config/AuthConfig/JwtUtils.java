@@ -1,4 +1,4 @@
-package com.bookingticket.controller.config;
+package com.bookingticket.controller.config.AuthConfig;
 
 
 import io.jsonwebtoken.Claims;
@@ -19,7 +19,7 @@ public class JwtUtils {
 
     private static String id = JwtUtils.randJIT();
     private static final String issuer = "ducminh";
-    private static final String subject = "BookingTicket";
+    private static String subject;
 
     private static String randJIT() {
         StringBuilder result = new StringBuilder();
@@ -32,7 +32,7 @@ public class JwtUtils {
         return result.toString();
     }
 
-    public static String createJWT() {
+    public static String createJWT(String subject) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
@@ -62,9 +62,9 @@ public class JwtUtils {
     }
 
     public static void main(String[] args) {
-        String a = JwtUtils.createJWT();
-//        System.out.println(a);
+        String a = JwtUtils.createJWT("USER");
+        System.out.println(a);
 //        System.out.println(JwtUtils.id);
-        System.out.println(JwtUtils.decodeJWT("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtaHJBZnVZR1paSDhPRm4iLCJpYXQiOjE3MjAxODYwNTAsInN1YiI6IkJvb2tpbmdUaWNrZXQiLCJpc3MiOiJkdWNtaW5oIiwiZXhwIjoxNzIwMjcyNDUwfQ.D9ghSl-uupzPXK_tw0MQnZ23dT7uTy2AT6bY4IxOFBA"));
+//        System.out.println(JwtUtils.decodeJWT("eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJtaHJBZnVZR1paSDhPRm4iLCJpYXQiOjE3MjAxODYwNTAsInN1YiI6IkJvb2tpbmdUaWNrZXQiLCJpc3MiOiJkdWNtaW5oIiwiZXhwIjoxNzIwMjcyNDUwfQ.D9ghSl-uupzPXK_tw0MQnZ23dT7uTy2AT6bY4IxOFBA"));
     }
 }

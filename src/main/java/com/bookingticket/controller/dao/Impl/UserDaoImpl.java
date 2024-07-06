@@ -1,13 +1,12 @@
 package com.bookingticket.controller.dao.Impl;
 
-import com.bookingticket.controller.config.UpdatableBCrypt;
+import com.bookingticket.controller.config.AuthConfig.UpdatableBCrypt;
 import com.bookingticket.controller.dao.UserDao;
 import com.bookingticket.controller.database.Database;
 import com.bookingticket.controller.dto.UserDto;
 import com.bookingticket.controller.model.User;
 import org.jdbi.v3.core.Jdbi;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +70,7 @@ public class UserDaoImpl implements UserDao {
         String q = "Select r.name from user u join role r where r.user_id = u.id and u.username = ?";
         List<String> roles = jdbi.withHandle(handle -> {
             return handle.createQuery(q)
-                    .bind(0,username)
+                    .bind(0, username)
                     .mapTo(String.class)
                     .list();
         });
@@ -79,13 +78,24 @@ public class UserDaoImpl implements UserDao {
         return map;
     }
 
+    @Override
+    public boolean resetPassword(String email, String password) {
+        UpdatableBCrypt updatableBCrypt = new UpdatableBCrypt();
+        boolean re = false;
+        String q = "Update user Set password = ? where email = ?";
+        int re1 = jdbi.withHandle(handle -> {
+            return handle.createUpdate(q)
+                    .bind(0, updatableBCrypt.hash(password))
+                    .bind(1, email)
+                    .execute();
+        });
+        return re1 > 0;
+    }
+
 
     public static void main(String[] args) {
         UserDaoImpl userDao = new UserDaoImpl();
-        Map<String, List<String>> re = userDao.mapRoles("minh");
-        boolean re1 = userDao.login("minh","123");
-//        System.out.println(re.toString());
-        System.out.println(re1);
+        System.out.println(userDao.resetPassword("voducminh39@gmail.com", "1234"));
     }
 
 }

@@ -1,4 +1,4 @@
-package com.bookingticket.controller.controller.UserController;
+package com.bookingticket.controller.controller.AuthController;
 
 import com.bookingticket.controller.dao.Impl.UserDaoImpl;
 import com.bookingticket.controller.dao.UserDao;

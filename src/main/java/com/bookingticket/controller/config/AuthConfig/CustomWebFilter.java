@@ -1,4 +1,4 @@
-package com.bookingticket.controller.config;
+package com.bookingticket.controller.config.AuthConfig;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;

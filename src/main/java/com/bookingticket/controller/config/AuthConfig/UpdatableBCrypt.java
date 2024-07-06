@@ -1,10 +1,8 @@
-package com.bookingticket.controller.config;
+package com.bookingticket.controller.config.AuthConfig;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.function.Function;
 
 public class UpdatableBCrypt {
     //    dang ki ghi log cho lop nay

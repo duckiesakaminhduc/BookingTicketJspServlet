@@ -1,4 +1,4 @@
-package com.bookingticket.controller.config;
+package com.bookingticket.controller.config.AuthConfig;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

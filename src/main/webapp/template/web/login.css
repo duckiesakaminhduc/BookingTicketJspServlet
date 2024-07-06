@@ -189,3 +189,6 @@ header{
     transition: transform .18s ease;
     transform: translateX(0);
 }
+.wrapper.active .form-box.google i{
+    font-size: 40px;
+}

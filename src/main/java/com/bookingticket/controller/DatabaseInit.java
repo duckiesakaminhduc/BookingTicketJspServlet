@@ -1,17 +1,12 @@
 package com.bookingticket.controller;
 
-import com.bookingticket.controller.config.UpdatableBCrypt;
+import com.bookingticket.controller.config.AuthConfig.UpdatableBCrypt;
 import com.bookingticket.controller.database.Database;
-import org.jdbi.v3.core.Handle;
 import org.jdbi.v3.core.Jdbi;
 
-import javax.management.Query;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 @WebListener
 public class DatabaseInit implements ServletContextListener {

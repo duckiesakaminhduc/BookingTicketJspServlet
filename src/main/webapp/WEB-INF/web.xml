@@ -9,5 +9,27 @@
         </welcome-file>
     </welcome-file-list>
 
+    <context-param>
+        <param-name>host</param-name>
+        <param-value>smtp.gmail.com</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>port</param-name>
+        <param-value>587</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>user</param-name>
+        <param-value>voducminh39@gmail.com</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>pass</param-name>
+        <param-value>pomg aeye jggc gojl</param-value>
+    </context-param>
+
 
 </web-app>
+
+<!--        pomg aeye jggc gojl-->
