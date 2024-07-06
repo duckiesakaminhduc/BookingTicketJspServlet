@@ -1,5 +1,7 @@
 package com.bookingticket.controller.admin;
 
+import com.Log.AbstractLogger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,25 +17,18 @@ import java.util.logging.Level;
 
 @WebServlet(urlPatterns = {"/admin-home"})
 public class HomeController extends HttpServlet {
-    private static final Logger logger = Logger.getLogger(HomeController.class.getName());
+    private static final AbstractLogger logger = new AbstractLogger(HomeController.class.getName(),"admin-home.log"){};
 
-    static {
-        try{
-            // Tạo file handler để ghi log vào file
-            FileHandler fileHandler = new FileHandler("admin-home.log",true);
-            fileHandler.setFormatter(new SimpleFormatter());
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "Failed to initialize log file handler", e);
-        }
+
+    {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Ghi Log cho request GET
-        logger.log(Level.INFO, "Received GET request from: " + req.getRemoteAddr());
+        logger.info("Received GET request from: " + req.getRemoteAddr());
 
         // Xử lý request Get
-
+        resp.getWriter().write("GET request processed");
 
 
     }
@@ -41,8 +36,10 @@ public class HomeController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // Ghi Log cho request POST
-        logger.log(Level.INFO, "Received POST request from: " + req.getRemoteAddr());
-        //Xử lý request Post
+        logger.info("Received POST request from: " + req.getRemoteAddr());
+
+        // Xử lý request Post
+        resp.getWriter().write("POST request processed");
 
     }
 }

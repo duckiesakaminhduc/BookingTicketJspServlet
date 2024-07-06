@@ -1,5 +1,7 @@
 package com.bookingticket.controller.config;
 
+import com.Log.AbstractLogger;
+
 import javax.security.auth.Subject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -15,7 +17,7 @@ import java.util.logging.Level;
 import java.io.IOException;
 
 
-public class CustomPrincipal implements Principal {
+public class CustomPrincipal extends AbstractLogger implements Principal {
     private String username;
     private String password;
 
@@ -23,35 +25,25 @@ public class CustomPrincipal implements Principal {
 
     private static final Logger logger = Logger.getLogger("CustomPrincipal.class.getName");
 
-    static {
-        // Tạo file handler để ghi log vào file
-        try {
-            FileHandler fileHandler = new FileHandler("customer-principal.log",true);
-            fileHandler.setFormatter(new SimpleFormatter());
-            logger.addHandler(fileHandler);
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "Failed to initialize log file handler", e);
-        }
-    }
-
     public CustomPrincipal(String username, String password, String... roles) {
+        super(CustomPrincipal.class.getName(), "customer-principal.log");
         this.username = username;
         this.password = password;
         this.roles = Arrays.asList(roles);
-        logger.log(Level.INFO,"Created Customer Principal for user : " + username + " with roles: " + String.join(",",roles));
+        info("Created Custom Principal for user: " + username + " with roles: " + String.join(",", roles));
 
     }
 
     @Override
     public String getName() {
-        logger.log(Level.INFO,"getName() called for user: " + username);
+        info("getName() called for user: " + username);
         return username;
     }
 
 
     public boolean isUserInRole(String role) {
         boolean result = roles.contains(role);
-        logger.log(Level.INFO,"isUserInRole() called for user" + username + "with role:" + role + "result : " + result) ;
+        info("isUserInRole() called for user " + username + " with role: " + role + " result: " + result);
         return result;
     }
 }
