@@ -64,6 +64,27 @@
 
         <!-- Main Content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <label for="selectBox1">Tổng doanh thu</label>
+            <select id="selectBox1">
+                <option value="Tháng này">Tháng này</option>
+                <option value="Tháng trước">Tháng trước</option>
+                <option value="6 Tháng">6 Tháng</option>
+            </select>
+            <div id="result1"></div>
+
+            <label for="theater"> Chọn rạp</label>
+            <form action="" id="theater">
+                <input type="checkbox" id="t1" name="x2" value="CINESTAR HUẾ">
+                <label for="t1">CINESTAR HUẾ</label><br>
+                <input type="checkbox" id="t2" name="x2" value="CINESTAR SINH VIÊN">
+                <label for="t2">CINESTAR SINH VIÊN</label><br>
+                <input type="checkbox" id="t3" name="x2" value="CINESTAR HAI BÀ TRƯNG">
+                <label for="t3">CINESTAR HAI BÀ TRƯNG</label><br>
+                <input type="checkbox" id="t4" name="x2" value="CINESTAR ĐÀ LẠT">
+                <label for="t4">CINESTAR ĐÀ LẠT</label><br>
+
+            </form>
+            <div id="result2"></div>
             <div
                     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
             >
@@ -89,31 +110,93 @@
 ></script>
 <script>
 
+    let chartInstance = null; // Biến để lưu trữ biểu đồ
+
     const ctx = document.querySelector("#myChart");
-    $(document).ready(function () {
+
+    function updateData() {
+        var selected_x1 = $('#selectBox1').val();
+        var selected_x2 = [];
+        $('input[name="x2"]:checked').each(function () {
+            selected_x2.push($(this).val());
+        });
+
         $.ajax({
-            url: "/BookingTicket/admin/revenue",
-            type: "GET",
+            url: "${pageContext.request.contextPath}/admin/revenue",
+            type: "POST",
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                months: selected_x1,
+                theaters: selected_x2
+            }),
             dataType: "json",
             success: function (data) {
-                let labels = [];
-                let datas = [];
-                console.log(labels);
-                console.log(datas);
+                let x = new Set();
+                let y = new Set();
+                let labels = new Set();
+                let arrX = [];
+                let arrY = [];
 
                 data.map(item => {
-                    labels.push(item.theater_name);
-                    datas.push(item.total_price);
-                })
-                new Chart(ctx, {
+                    x.add(item.theater_name);
+                    y.add(item.total_price);
+                    labels.add(item.month);
+                });
+
+                arrX = Array.from(x);
+                arrY = Array.from(y);
+
+
+                let cottong = Array.from(labels);
+                console.log("cottong", cottong);
+
+                let data_item = [];
+                for (let i = 0; i < arrX.length; i++) {
+                    data_item[i] = [];
+                    for (let j = 0; j < cottong.length; j++) {
+                        let item = data.find(d => d.theater_name === arrX[i] && d.month === cottong[j]);
+                        data_item[i].push(item ? item.total_price : 0);
+                    }
+                }
+                // for (let i = 0; i < arrX.length; i++) {
+                //     data_item[i] = [];
+                //     for (let j = 0; j < cottong.length; j++) {
+                //         data_item[i].push(arrX.length * j + i);
+                //     }
+                // }
+                //
+                // let data_item1 = [];
+                // for (let i = 0; i < data_item.length; i++) {
+                //     data_item1[i] = [];
+                //     for (let j = 0; j < data_item[i].length; j++) {
+                //         data_item1[i].push(data_item[j]);
+                //     }
+                // }
+                //
+                console.log(data_item)
+                // Create datasets for chart
+                let datasets = [];
+                for (let i = 0; i < arrX.length; i++) {
+                    datasets.push({
+                        label: arrX[i],
+                        backgroundColor: "#aaadff",
+                        fill: true,
+                        data: data_item[i],
+                        borderColor: "#ffffff",
+                        borderWidth: 1
+                    });
+                }
+
+                // Kiểm tra và hủy biểu đồ cũ trước khi tạo biểu đồ mới
+                if (chartInstance !== null) {
+                    chartInstance.destroy();
+                }
+
+                chartInstance = new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Đơn vị: VND',
-                            data: datas,
-                            borderWidth: 1
-                        }]
+                        labels: cottong,
+                        datasets: datasets
                     },
                     options: {
                         scales: {
@@ -125,8 +208,17 @@
                 });
             }
         });
-    });
+    }
 
+    $(document).ready(function () {
+        // Gọi updateData khi trang được tải
+        updateData();
+
+        // Gắn sự kiện change cho select box và checkboxes
+        $('#selectBox1, input[name="x2"]').change(function () {
+            updateData();
+        });
+    });
 
 </script>
 

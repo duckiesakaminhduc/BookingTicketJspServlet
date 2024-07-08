@@ -5,5 +5,5 @@ import com.bookingticket.controller.dto.RevenueByTheaterDto;
 import java.util.List;
 
 public interface TheaterDao {
-    public List<RevenueByTheaterDto> RevenueByTicket();
+    public List<RevenueByTheaterDto> RevenueByTicket(int x1, List<String> x2);
 }

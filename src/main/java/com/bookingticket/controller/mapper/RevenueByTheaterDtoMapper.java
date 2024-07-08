@@ -14,6 +14,7 @@ public class RevenueByTheaterDtoMapper implements RowMapper<RevenueByTheaterDto>
         RevenueByTheaterDto dto = new RevenueByTheaterDto();
         dto.setTheater_name(rs.getString("theater_name"));
         dto.setTotal_price(rs.getFloat("total_price"));
+        dto.setMonth(rs.getInt("month"));
         return dto;
     }
 }

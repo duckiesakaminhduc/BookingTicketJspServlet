@@ -14,8 +14,9 @@ public class TheaterServiceImpl implements TheaterService {
         this.theaterDao = theaterDao;
     }
 
+
     @Override
-    public List<RevenueByTheaterDto> RevenueByTicket() {
-        return theaterDao.RevenueByTicket();
+    public List<RevenueByTheaterDto> RevenueByTicket(int x1, List<String> x2) {
+        return theaterDao.RevenueByTicket(x1,x2);
     }
 }
