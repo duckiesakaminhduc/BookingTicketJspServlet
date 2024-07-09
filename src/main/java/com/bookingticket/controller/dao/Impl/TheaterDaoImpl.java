@@ -2,7 +2,11 @@ package com.bookingticket.controller.dao.Impl;
 
 import com.bookingticket.controller.dao.TheaterDao;
 import com.bookingticket.controller.database.Database;
+import com.bookingticket.controller.dto.MovieByTheaterDto;
+import com.bookingticket.controller.dto.MovieDto;
 import com.bookingticket.controller.dto.RevenueByTheaterDto;
+import com.bookingticket.controller.mapper.MovieByTheaterDtoMapper;
+import com.bookingticket.controller.mapper.MovieDtoMapper;
 import com.bookingticket.controller.mapper.RevenueByTheaterDtoMapper;
 import org.jdbi.v3.core.Jdbi;
 
@@ -15,6 +19,8 @@ public class TheaterDaoImpl implements TheaterDao {
     public TheaterDaoImpl() {
         this.jdbi = Database.getJdbi();
         jdbi.registerRowMapper(new RevenueByTheaterDtoMapper());
+        jdbi.registerRowMapper(new MovieDtoMapper());
+        jdbi.registerRowMapper(new MovieByTheaterDtoMapper());
     }
 
     @Override
@@ -32,7 +38,7 @@ public class TheaterDaoImpl implements TheaterDao {
         revenus = jdbi.withHandle(handle -> {
             return handle.createQuery(q)
                     .bind("x1", x1)
-                    .bindList ("x2", x2)
+                    .bindList("x2", x2)
                     .mapTo(RevenueByTheaterDto.class)
                     .list();
         });
@@ -40,11 +46,24 @@ public class TheaterDaoImpl implements TheaterDao {
         return revenus;
     }
 
+    @Override
+    public List<MovieByTheaterDto> getAllMovieByTheater(String theater_name) {
+        List<MovieByTheaterDto> movies = new ArrayList<>();
+        String q = "select m.movie_name,m.create_at,m.create_by,m.modified_at,m.modified_by,m.url_img, m.status from movie m " +
+                "join theater_movie tm on m.id = tm.movie_id  " +
+                "join theater t on t.id = tm.theater_id " +
+                "where t.theater_name = :theater_name ";
+        movies = jdbi.withHandle(handle -> {
+            return handle.createQuery(q)
+                    .bind("theater_name", theater_name)
+                    .mapTo(MovieByTheaterDto.class)
+                    .list();
+        });
+        return movies;
+    }
+
     public static void main(String[] args) {
         TheaterDao t = new TheaterDaoImpl();
-        List<String> re = new ArrayList<>();
-        re.add("CINESTAR HUẾ");
-        re.add("CINESTAR HAI BÀ TRƯNG");
-        System.out.println(t.RevenueByTicket(6, re).toString());
+        System.out.println(t.getAllMovieByTheater("CINESTAR SINH VIÊN").toString());
     }
 }

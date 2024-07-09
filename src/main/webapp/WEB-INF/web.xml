@@ -6,7 +6,7 @@
     <welcome-file-list>
         <welcome-file>
             views/admin/chart.jsp
-
+<!--index1.jsp-->
         </welcome-file>
     </welcome-file-list>
 

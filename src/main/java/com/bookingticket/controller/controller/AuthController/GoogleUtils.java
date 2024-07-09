@@ -1,6 +1,6 @@
 package com.bookingticket.controller.controller.AuthController;
 
-import com.bookingticket.controller.config.AuthConfig.ConfigUtil;
+//import com.bookingticket.controller.config.AuthConfig.ConfigUtil;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import org.apache.http.client.ClientProtocolException;
@@ -10,8 +10,8 @@ import org.apache.http.client.fluent.Request;
 import java.io.IOException;
 
 public class GoogleUtils {
-    private final static String GOOGLE_CLIENT_ID = ConfigUtil.getProperty("GOOGLE_CLIENT_ID");
-    private final static String GOOGLE_CLIENT_SECRET = ConfigUtil.getProperty("GOOGLE_CLIENT_SECRET");
+    private final static String GOOGLE_CLIENT_ID = "481332987056-fjeqn0n3edel7ok3adonpnuqbsn0n6kf.apps.googleusercontent.com";
+    private final static String GOOGLE_CLIENT_SECRET = "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";
     private final static String GOOGLE_REDIRECT_URI = "http://localhost:8080/BookingTicket/google";
     private final static String GOOGLE_GRANT_TYPE = "authorization_code";
     private final static String GOOGLE_LINK_GET_TOKEN = "https://accounts.google.com/o/oauth2/token";
