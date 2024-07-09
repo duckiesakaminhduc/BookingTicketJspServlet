@@ -290,7 +290,8 @@
                     options: {
                         scales: {
                             y: {
-                                beginAtZero: tru}
+                                beginAtZero: true
+                            }
                         }
                     }
                 });
@@ -326,10 +327,6 @@
         $('#myTable').DataTable();
 
     });
-
-
-
-
 
 </script>
 
