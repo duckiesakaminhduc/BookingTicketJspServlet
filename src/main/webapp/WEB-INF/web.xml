@@ -5,7 +5,7 @@
          version="5.0">
     <welcome-file-list>
         <welcome-file>
-            views/admin/chart.jsp
+            views/admin/movie/movie.jsp
 <!--index1.jsp-->
         </welcome-file>
     </welcome-file-list>

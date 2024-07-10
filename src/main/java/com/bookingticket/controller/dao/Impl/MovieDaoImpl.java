@@ -2,12 +2,15 @@ package com.bookingticket.controller.dao.Impl;
 
 import com.bookingticket.controller.dao.MovieDao;
 import com.bookingticket.controller.database.Database;
+import com.bookingticket.controller.dto.MovieDto;
 import com.bookingticket.controller.dto.MovieEditDto;
 import com.bookingticket.controller.mapper.MovieEditDtoMapper;
 import org.jdbi.v3.core.Jdbi;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class MovieDaoImpl implements MovieDao {
@@ -81,9 +84,44 @@ public class MovieDaoImpl implements MovieDao {
         });
     }
 
+    @Override
+    public boolean addMovie(MovieDto movieDto) {
+        String sql = "INSERT INTO table_name (create_at, create_by, modified_at, modified_by, category, country, duration, format, manager, movie_name, performers, premiere, recommend, subtitle, url_img, status) " +
+                "VALUES (:create_at, :create_by, :modified_at, :modified_by, :category, :country, :duration, :format, :manager, :movie_name, :performers, :premiere, :recommend, :subtitle, :url_img, :status)";
+
+        int re = jdbi.withHandle(handle -> {
+            return handle.createUpdate(sql)
+                    .bindBean(MovieDto.class)
+                    .execute();
+        });
+        return re > 0;
+    }
+
 
     public static void main(String[] args) {
         MovieDaoImpl m = new MovieDaoImpl();
-        System.out.println(m.deleteMovieById(142l));
+        String dateTimeString = "2024-10-29 14:46:29.000000";
+
+        Timestamp timestamp = Timestamp.valueOf(dateTimeString);
+
+        MovieDto movieDto = new MovieDto();
+        movieDto.setCreate_at(Time.valueOf("dateTimeString"));
+        movieDto.setCreate_by("admin");
+        movieDto.setModified_at(Time.valueOf("dateTimeString"));
+        movieDto.setModified_by("admin");
+        movieDto.setCategory("Action");
+        movieDto.setCountry("USA");
+        movieDto.setDuration(120);
+        movieDto.setFormat("2D");
+        movieDto.setManager("John Doe");
+        movieDto.setMovie_name("Test Movie");
+        movieDto.setPerformers("Actor A, Actress B");
+        movieDto.setPremiere("2024-07-10");
+        movieDto.setRecommend("Yes");
+        movieDto.setSubtitle("English");
+        movieDto.setUrl_img("http://example.com/test.jpg");
+        movieDto.setStatus(1);
+
+        System.out.println(m.addMovie(movieDto));
     }
 }

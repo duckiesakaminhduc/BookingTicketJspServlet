@@ -187,4 +187,25 @@ public class MovieDto {
         this.url_img = url_img;
     }
 
+    @Override
+    public String toString() {
+        return "MovieDto{" +
+                "create_at=" + create_at +
+                ", create_by='" + create_by + '\'' +
+                ", modified_at=" + modified_at +
+                ", modified_by='" + modified_by + '\'' +
+                ", category='" + category + '\'' +
+                ", country='" + country + '\'' +
+                ", duration=" + duration +
+                ", format='" + format + '\'' +
+                ", manager='" + manager + '\'' +
+                ", movie_name='" + movie_name + '\'' +
+                ", performers='" + performers + '\'' +
+                ", premiere='" + premiere + '\'' +
+                ", recommend='" + recommend + '\'' +
+                ", subtitle='" + subtitle + '\'' +
+                ", url_img='" + url_img + '\'' +
+                ", status=" + status +
+                '}';
+    }
 }
