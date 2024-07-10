@@ -16,4 +16,9 @@ public class MovieServiceImpl implements MovieService {
     public MovieEditDto getMovieById(Long id) {
         return movieDao.getMovieById(id);
     }
+
+    @Override
+    public boolean deleteMovieById(Long id) {
+        return movieDao.deleteMovieById(id);
+    }
 }

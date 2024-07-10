@@ -4,4 +4,6 @@ import com.bookingticket.controller.dto.MovieEditDto;
 
 public interface MovieService {
     public MovieEditDto getMovieById(Long id);
+
+    public boolean deleteMovieById(Long id);
 }

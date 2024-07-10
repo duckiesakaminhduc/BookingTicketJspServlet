@@ -95,6 +95,7 @@ public class Movie extends HttpServlet {
         resp.getWriter().write(jsonResponse.toString());
     }
 
+
     public static void main(String[] args) {
 
     }
