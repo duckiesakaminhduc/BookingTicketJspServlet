@@ -96,6 +96,8 @@ public class UserDaoImpl implements UserDao {
     public static void main(String[] args) {
         UserDaoImpl userDao = new UserDaoImpl();
         System.out.println(userDao.resetPassword("voducminh39@gmail.com", "1234"));
+
+
     }
 
 }

@@ -52,7 +52,7 @@ public class Theater extends HttpServlet {
         }
         List<RevenueByTheaterDto> revenue = theaterService.RevenueByTicket(thang, theaters);
         JsonArray jsonArray = gson.toJsonTree(revenue).getAsJsonArray();
-        System.out.println(jsonArray.toString());
+//        System.out.println(jsonArray.toString());
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(jsonArray.toString());

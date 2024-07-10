@@ -13,6 +13,7 @@ public class MovieByTheaterDtoMapper implements RowMapper<MovieByTheaterDto> {
     @Override
     public MovieByTheaterDto map(ResultSet rs, StatementContext ctx) throws SQLException {
         MovieByTheaterDto movieDto = new MovieByTheaterDto();
+        movieDto.setMovie_id(rs.getLong("id"));
         movieDto.setMovie_name(rs.getString("movie_name"));
         movieDto.setCreate_at(rs.getTimestamp("create_at"));
         movieDto.setCreate_by(rs.getString("create_by"));

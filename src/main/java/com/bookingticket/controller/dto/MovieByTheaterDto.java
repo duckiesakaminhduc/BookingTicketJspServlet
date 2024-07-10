@@ -5,19 +5,10 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 import java.sql.Timestamp;
 
 public class MovieByTheaterDto {
-    @Override
-    public String toString() {
-        return "MovieByTheaterDto{" +
-                "movie_name='" + movie_name + '\'' +
-                ", create_at=" + create_at +
-                ", create_by='" + create_by + '\'' +
-                ", modified_at=" + modified_at +
-                ", modified_by='" + modified_by + '\'' +
-                ", url_img='" + url_img + '\'' +
-                ", status=" + status +
-                '}';
-    }
 
+
+    @ColumnName("id")
+    private Long movie_id;
     @ColumnName("movie_name")
     private String movie_name;
     @ColumnName("create_at")
@@ -57,6 +48,20 @@ public class MovieByTheaterDto {
         this.modified_at = modified_at;
     }
 
+    @Override
+    public String toString() {
+        return "MovieByTheaterDto{" +
+                "movie_id=" + movie_id +
+                ", movie_name='" + movie_name + '\'' +
+                ", create_at=" + create_at +
+                ", create_by='" + create_by + '\'' +
+                ", modified_at=" + modified_at +
+                ", modified_by='" + modified_by + '\'' +
+                ", url_img='" + url_img + '\'' +
+                ", status=" + status +
+                '}';
+    }
+
     public String getModified_by() {
         return modified_by;
     }
@@ -89,12 +94,21 @@ public class MovieByTheaterDto {
         this.status = status;
     }
 
-    public MovieByTheaterDto(Timestamp create_at, String create_by, Timestamp modified_at, String modified_by, String movie_name, String url_img, int status) {
+    public Long getMovie_id() {
+        return movie_id;
+    }
+
+    public void setMovie_id(Long movie_id) {
+        this.movie_id = movie_id;
+    }
+
+    public MovieByTheaterDto(Long movie_id, String movie_name, Timestamp create_at, String create_by, Timestamp modified_at, String modified_by, String url_img, int status) {
+        this.movie_id = movie_id;
+        this.movie_name = movie_name;
         this.create_at = create_at;
         this.create_by = create_by;
         this.modified_at = modified_at;
         this.modified_by = modified_by;
-        this.movie_name = movie_name;
         this.url_img = url_img;
         this.status = status;
     }

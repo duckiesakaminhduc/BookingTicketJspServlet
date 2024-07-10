@@ -43,6 +43,22 @@
             width: calc(100% - 250px);
             overflow-y: auto; /* Cho phép cuộn nội dung nếu quá dài */
         }
+
+        .overlay {
+            display: none; /* Ban đầu ẩn */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Đảm bảo lớp phủ nằm trên các phần tử khác */
+            overflow-y: auto; /* Cho phép cuộn nội dung nếu quá dài */
+
+        }
+
     </style>
 </head>
 <body>
@@ -148,7 +164,7 @@
         <table id="myTable" class="display" style="width: 100%;">
             <thead>
             <tr>
-                <th style="display: none">ID</th>
+                <th style="">ID</th>
                 <th>Tên phim</th>
                 <th>Ngày thêm</th>
                 <th>Người thêm</th>
@@ -157,18 +173,9 @@
                 <th>Sửa</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tbd">
             <tr>
-                <td style="display: none">ID</td>
-                <td>Michael Bruce</td>
-                <td>Javascript Developer</td>
-                <td>Singapore</td>
-                <td>29</td>
-                <td>2011-06-27</td>
-                <td>$183,000</td>
-            </tr>
-            <tr>
-                <td style="display: none">1</td>
+                <td>1</td>
                 <td>Donna Snider</td>
                 <td>Customer Support</td>
                 <td>New York</td>
@@ -187,7 +194,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th style="display: none">ID</th>
+                <th style="">ID</th>
                 <th>Name</th>
                 <th>Position</th>
                 <th>Office</th>
@@ -199,7 +206,214 @@
         </table>
     </div>
 </div>
+
+<div class="overlay" id="edit">
+    <div class="popup" class="container">
+        <div class="row">
+            <div
+                    class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing"
+            >
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-content widget-content-area add-category">
+                        <div class="row">
+                            <div class="mx-xl-auto col-xl-10 col-md-12">
+                                <div class="card card-default">
+                                    <div class="card-heading">
+                                        <h2
+                                                class="card-title p-1"
+                                                style="float: right;"
+                                        >
+                                            <div id="close">
+                                                <div class="btn" style="font-size: 50px">
+                                                    <i class="fa-solid fa-rectangle-xmark"></i>
+                                                </div>
+                                            </div>
+                                        </h2>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="card-body">
+                                            <form class="form-horizontal">
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Tên phim :</label>
+                                                        <div class="col-md-8">
+                                                            <input
+                                                                    class="form-control"
+                                                                    name="name"
+                                                                    type="text"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Trạng thái :</label>
+                                                        <div class="col-md-8">
+                                                            <select
+                                                                    class="form-control form-custom"
+                                                                    name="is_active"
+                                                            >
+                                                                <option value="">Lựa chọn</option>
+                                                                <option value="yes">Đang chiếu</option>
+                                                                <option value="no">Sắp chiếu</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Ảnh bìa :</label>
+                                                        <div class="col-md-8">
+                                                            <div class="input-group mb-3">
+                                                                <div class="custom-file">
+                                                                    <input
+                                                                            type="file"
+                                                                            class="form-control-file"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Quốc gia :</label>
+                                                        <div class="col-md-8">
+                                                            <input
+                                                                    class="form-control"
+                                                                    name="name"
+                                                                    type="text"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Thời lượng :</label>
+                                                        <div class="col-md-8">
+                                                            <input
+                                                                    class="form-control"
+                                                                    name="name"
+                                                                    type="number"
+                                                                    min="0"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Đạo diễn :</label>
+                                                        <div class="col-md-8">
+                                                            <input
+                                                                    class="form-control"
+                                                                    name="name"
+                                                                    type="text"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Diễn viên :</label>
+                                                        <div class="col-md-8">
+                                                            <input
+                                                                    id="actor"
+                                                                    class="form-control"
+                                                                    name="name"
+                                                                    type="text"
+                                                            />
+                                                            <ul
+                                                                    id="actorList"
+                                                                    style="list-style: none"
+                                                            ></ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4">Khuyến cáo :</label>
+                                                        <div class="col-md-8">
+                                                            <input
+                                                                    class="form-control"
+                                                                    name="name"
+                                                                    type="text"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4" for="event-date_1"
+                                                        >Ngày công chiếu:</label
+                                                        >
+                                                        <input
+                                                                class="col-md-8"
+                                                                type="date"
+                                                                id="event-date_1"
+                                                                name="event-date_1"
+                                                                value="2024-07-22"
+                                                                min="2024-01-01"
+                                                                max="2024-12-31"
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mb-4">
+                                                    <div class="row">
+                                                        <label class="col-md-4" for="event-date_2"
+                                                        >Ngày công chiếu:</label
+                                                        >
+                                                        <input
+                                                                class="col-md-8"
+                                                                type="date"
+                                                                id="event-date_2"
+                                                                name="event-date_2"
+                                                                value="2024-07-22"
+                                                                min="2024-01-01"
+                                                                max="2024-12-31"
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div class="align-center">
+                                                    <input
+                                                            value="Submit"
+                                                            class="btn mt-5 mb-4"
+                                                            type="submit"
+                                                    />
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div
+                    class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing"
+            >
+                <div class="statbox widget box box-shadow">
+                    <div class="widget-header">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12 col-12">
+                                <h4>Add Sub Categories</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/views/admin/chart.js"></script>
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -213,7 +427,7 @@
 ></script>
 <script>
 
-    let chartInstance = null; // Biến để lưu trữ biểu đồ
+    let chartInstance = null;
     let arr_color = ['#fcba03', '#24fc03', '#03a1fc', '#d40f1c'];
     const ctx = document.querySelector("#myChart");
 
@@ -251,7 +465,7 @@
 
 
                 let cottong = Array.from(labels);
-                console.log("cottong", cottong);
+                // console.log("cottong", cottong);
 
                 let data_item = [];
 
@@ -262,7 +476,7 @@
                         data_item[i].push(item.total_price);
                     }
                 }
-                console.log(data_item)
+                // console.log(data_item)
                 // Create datasets for chart
                 let datasets = [];
                 for (let i = 0; i < arrX.length; i++) {
@@ -323,10 +537,74 @@
             $('#managementContent').hide();
         });
 
+        var table = $('#myTable').DataTable({
+            serverSide: true,
+            processing: true,
+            ajax: {
+                url: '${pageContext.request.contextPath}/admin/theater',
+                type: "GET",
+            },
+            "columns": [
+                {"data": "id"},
+                {"data": "movie_name"},
+                {"data": "create_at"},
+                {"data": "create_by"},
+                {
+                    "data": "status",
+                    "render": function (data, type, row) {
+                        let statusText = '';
+                        switch (data) {
+                            case 0:
+                                statusText = 'Hết chiếu';
+                                break;
+                            case 1:
+                                statusText = 'Đang chiếu';
+                                break;
+                            case 2:
+                                statusText = 'Sắp chiếu';
+                                break;
+                            default:
+                                statusText = 'Unknown';
+                                break;
+                        }
+                        return statusText;
+                    }
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return '<div class="btn delete_btn"><i class=" fa-solid fa-trash" style="font-size: 20px"></i></div>';
+                    }
+                },
+                {
+                    "data": null,
+                    "render": function (data, type, row) {
+                        return '<div class="btn edit_btn"><i class=" fa-solid fa-pen" style="font-size: 20px"></i></div>';
+                    }
+                },
 
-        $('#myTable').DataTable();
+            ]
+        });
 
+        $('#tbd').on('click', 'tr', (e) => {
+            console.log(table.row(e.currentTarget).data().id)
+        })
+        $("#close").on('click',function (){
+            $('#edit').hide();
+        })
+
+        $('#myTable').on('draw.dt', function () {
+            $('.edit_btn').click(function (e) {
+                console.log('Nút chỉnh sửa được click 111');
+                $('#edit').show();
+                $.ajax({
+                    url: `admin/movie`,
+                    type: "GET"
+                })
+            });
+        });
     });
+
 
 </script>
 

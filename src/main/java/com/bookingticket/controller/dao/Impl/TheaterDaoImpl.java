@@ -12,6 +12,7 @@ import org.jdbi.v3.core.Jdbi;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TheaterDaoImpl implements TheaterDao {
     private Jdbi jdbi;
@@ -49,7 +50,7 @@ public class TheaterDaoImpl implements TheaterDao {
     @Override
     public List<MovieByTheaterDto> getAllMovieByTheater(String theater_name) {
         List<MovieByTheaterDto> movies = new ArrayList<>();
-        String q = "select m.movie_name,m.create_at,m.create_by,m.modified_at,m.modified_by,m.url_img, m.status from movie m " +
+        String q = "select m.id, m.movie_name,m.create_at,m.create_by,m.modified_at,m.modified_by,m.url_img, m.status from movie m " +
                 "join theater_movie tm on m.id = tm.movie_id  " +
                 "join theater t on t.id = tm.theater_id " +
                 "where t.theater_name = :theater_name ";
@@ -64,6 +65,14 @@ public class TheaterDaoImpl implements TheaterDao {
 
     public static void main(String[] args) {
         TheaterDao t = new TheaterDaoImpl();
-        System.out.println(t.getAllMovieByTheater("CINESTAR SINH VIÊN").toString());
+        List<MovieByTheaterDto> movies_filters = t.getAllMovieByTheater("CINESTAR SINH VIÊN");
+
+        List<MovieByTheaterDto> re =movies_filters
+                .stream()
+                .skip(0)
+                .limit(10)
+                .collect(Collectors.toList());
+
+        System.out.println(re.size());
     }
 }
