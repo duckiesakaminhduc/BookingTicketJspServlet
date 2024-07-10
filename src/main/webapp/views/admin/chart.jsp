@@ -238,8 +238,9 @@
                                                         <label class="col-md-4">Tên phim :</label>
                                                         <div class="col-md-8">
                                                             <input
+                                                                    id="movie_name"
                                                                     class="form-control"
-                                                                    name="name"
+                                                                    name="movie_name"
                                                                     type="text"
                                                             />
                                                         </div>
@@ -250,6 +251,7 @@
                                                         <label class="col-md-4">Trạng thái :</label>
                                                         <div class="col-md-8">
                                                             <select
+
                                                                     class="form-control form-custom"
                                                                     name="is_active"
                                                             >
@@ -281,8 +283,9 @@
                                                         <label class="col-md-4">Quốc gia :</label>
                                                         <div class="col-md-8">
                                                             <input
+                                                                    id="country"
                                                                     class="form-control"
-                                                                    name="name"
+                                                                    name="country"
                                                                     type="text"
                                                             />
                                                         </div>
@@ -293,8 +296,9 @@
                                                         <label class="col-md-4">Thời lượng :</label>
                                                         <div class="col-md-8">
                                                             <input
+                                                                    id="duration"
                                                                     class="form-control"
-                                                                    name="name"
+                                                                    name="duration"
                                                                     type="number"
                                                                     min="0"
                                                             />
@@ -306,8 +310,9 @@
                                                         <label class="col-md-4">Đạo diễn :</label>
                                                         <div class="col-md-8">
                                                             <input
+                                                                    id="manager"
                                                                     class="form-control"
-                                                                    name="name"
+                                                                    name="manager"
                                                                     type="text"
                                                             />
                                                         </div>
@@ -320,7 +325,7 @@
                                                             <input
                                                                     id="actor"
                                                                     class="form-control"
-                                                                    name="name"
+                                                                    name="performers"
                                                                     type="text"
                                                             />
                                                             <ul
@@ -336,8 +341,9 @@
                                                         <label class="col-md-4">Khuyến cáo :</label>
                                                         <div class="col-md-8">
                                                             <input
+                                                                    id="recommend"
                                                                     class="form-control"
-                                                                    name="name"
+                                                                    name="recommend"
                                                                     type="text"
                                                             />
                                                         </div>
@@ -361,22 +367,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="form-group mb-4">
-                                                    <div class="row">
-                                                        <label class="col-md-4" for="event-date_2"
-                                                        >Ngày công chiếu:</label
-                                                        >
-                                                        <input
-                                                                class="col-md-8"
-                                                                type="date"
-                                                                id="event-date_2"
-                                                                name="event-date_2"
-                                                                value="2024-07-22"
-                                                                min="2024-01-01"
-                                                                max="2024-12-31"
-                                                        />
-                                                    </div>
-                                                </div>
+
                                                 <div class="align-center">
                                                     <input
                                                             value="Submit"
@@ -587,22 +578,51 @@
         });
 
         $('#tbd').on('click', 'tr', (e) => {
-            console.log(table.row(e.currentTarget).data().id)
+            // id= table.row(e.currentTarget).data().id;
+            // console.log("id",id)
         })
-        $("#close").on('click',function (){
+        $("#close").on('click', function () {
             $('#edit').hide();
         })
 
         $('#myTable').on('draw.dt', function () {
             $('.edit_btn').click(function (e) {
-                console.log('Nút chỉnh sửa được click 111');
                 $('#edit').show();
+                let tr = $(this).closest('tr');
+                let movie_id = tr.find('td:first').text().trim();
+                // console.log(movie_id)
                 $.ajax({
-                    url: `admin/movie`,
-                    type: "GET"
+                    url: `admin/movie?movie_id=` + movie_id,
+                    type: "GET",
+                    success: function (data) {
+                        editForm(data);
+                    }
                 })
             });
         });
+
+        function editForm(data) {
+            $('#movie_name').val(data.movie_name);
+            String
+            stt = "";
+            switch (data.status) {
+                case 1:
+                    stt = "Đang chiếu"
+                    break;
+                case 2:
+                    stt = "Sắp chiếu"
+                    break;
+                default:
+                    break;
+            }
+            $('select[name="is_active"]').val(stt);
+            $('#country').val(data.country);
+            $('#duration').val(data.duration);
+            $('#manager').val(data.manager);
+            $('#actor').val(data.performers);
+            $('#recommend').val(data.recommend);
+
+        }
     });
 
 
