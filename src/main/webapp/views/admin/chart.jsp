@@ -599,6 +599,19 @@
                     }
                 })
             });
+
+            $('.delete_btn').click(function (e){
+                let tr = $(this).closest('tr');
+                let movie_id = tr.find('td:first').text().trim();
+                $.ajax({
+                    url:`admin/delete/movie`,
+                    type:"POST",
+                    data: {movie_id:movie_id},
+                    success:function (e){
+                        tr.remove();
+                    }
+                })
+            })
         });
 
         function editForm(data) {
