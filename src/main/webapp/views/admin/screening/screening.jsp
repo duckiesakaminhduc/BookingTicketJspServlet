@@ -18,12 +18,7 @@
 </head>
 
 <body>
-<!--
-<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-<div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-<div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div> -->
 
-<h1>xin chao</h1>
 <div class="container">
 
     <div class="d-flex justify-content-between align-items-center">
@@ -72,11 +67,26 @@
     </div>
 
     <!-- show image -->
-    <div id="list_movies">
+    <div id="list_movies" style="display: flex; flex-direction: row;gap: 10px;">
 
         <div class="movie__item">
             <div
                     id="drag1"
+                    ondragstart="drag(event)"
+                    draggable="true"
+                    class="card"
+                    style="width: 5rem"
+            >
+                <img src="<c:url value="/views/admin/screening/avatar-01.jpg"/> " class="card-img-top" alt=""/>
+                <div class="card-body">
+                    <p class="card-text">info</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="movie__item">
+            <div
+                    id="drag2"
                     ondragstart="drag(event)"
                     draggable="true"
                     class="card"
@@ -123,7 +133,7 @@
                             class="border margin-10px-bottom font-size14"
                             style="bottom: -27px; width: 100%; left: 0px"
                     >
-                        <span class="time">Time</span>
+                        <span class="time">08:00</span>
                     </div>
                 </td>
 
@@ -137,7 +147,7 @@
                             class="border margin-10px-bottom font-size14"
                             style="bottom: -27px; width: 100%; left: 0px"
                     >
-                        <span class="time">Time</span>
+                        <span class="time">08:00</span>
                     </div>
                 </td>
                 <td
@@ -150,7 +160,7 @@
                             class="border margin-10px-bottom font-size14"
                             style="bottom: -27px; width: 100%; left: 0px"
                     >
-                        <span class="time">Time</span>
+                        <span class="time">08:00</span>
                     </div>
                 </td>
                 <td
@@ -163,7 +173,7 @@
                             class="border margin-10px-bottom font-size14"
                             style="bottom: -27px; width: 100%; left: 0px"
                     >
-                        <span class="time">Time</span>
+                        <span class="time">08:00</span>
                     </div>
                 </td>
                 <td
@@ -176,7 +186,7 @@
                             class="border margin-10px-bottom font-size14"
                             style="bottom: -27px; width: 100%; left: 0px"
                     >
-                        <span class="time">Time</span>
+                        <span class="time">08:00</span>
                     </div>
                 </td>
                 <td
@@ -189,7 +199,7 @@
                             class="border margin-10px-bottom font-size14"
                             style="bottom: -27px; width: 100%; left: 0px"
                     >
-                        <span class="time">Time</span>
+                        <span class="time">08:00</span>
                     </div>
                 </td>
                 <td
@@ -202,7 +212,7 @@
                             class="border margin-10px-bottom font-size14"
                             style="bottom: -27px; width: 100%; left: 0px"
                     >
-                        <span class="time">Time</span>
+                        <span class="time">08:00</span>
                     </div>
                 </td>
             </tr>
@@ -222,42 +232,7 @@
 </body>
 
 <script>
-    function allowDrop(ev) {
-        ev.preventDefault();
-    }
 
-    function drag(ev) {
-        ev.dataTransfer.setData("text", ev.target.id);
-    }
-
-    function drop(ev) {
-        ev.preventDefault();
-        var data = ev.dataTransfer.getData("text");
-        const dragElement = document.getElementById(data);
-        if (dragElement.id == "drag1") {
-            const clone = dragElement.cloneNode(true);
-            clone.id = generateUUID();
-
-            ev.target.appendChild(clone);
-            clone.addEventListener("ondragstart", (ev) => {
-                ev.dataTransfer.setData("text", ev.target.id);
-            });
-            clone.setAttribute("draggable", "true");
-        } else {
-            ev.target.appendChild(dragElement);
-        }
-    }
-
-    function generateUUID() {
-        return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-            /[xy]/g,
-            function (c) {
-                var r = (Math.random() * 16) | 0,
-                    v = c == "x" ? r : (r & 0x3) | 0x8;
-                return v.toString(16);
-            }
-        );
-    }
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

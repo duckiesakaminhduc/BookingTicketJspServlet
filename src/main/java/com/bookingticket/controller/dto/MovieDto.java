@@ -5,6 +5,8 @@ import org.jdbi.v3.core.mapper.reflect.ColumnName;
 import java.sql.Timestamp;
 
 public class MovieDto {
+    @ColumnName("id")
+    private Long id;
     @ColumnName("create_at")
     private Timestamp create_at;
     @ColumnName("create_by")
@@ -169,7 +171,16 @@ public class MovieDto {
         this.status = status;
     }
 
-    public MovieDto(Timestamp create_at, String create_by, Timestamp modified_at, String modified_by, String category, String country, int duration, String format, String manager, String movie_name, String performers, String premiere, String recommend, String subtitle, String url_img) {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public MovieDto(Long id, Timestamp create_at, String create_by, Timestamp modified_at, String modified_by, String category, String country, int duration, String format, String manager, String movie_name, String performers, String premiere, String recommend, String subtitle, String url_img, int status) {
+        this.id = id;
         this.create_at = create_at;
         this.create_by = create_by;
         this.modified_at = modified_at;
@@ -185,6 +196,7 @@ public class MovieDto {
         this.recommend = recommend;
         this.subtitle = subtitle;
         this.url_img = url_img;
+        this.status = status;
     }
 
     @Override

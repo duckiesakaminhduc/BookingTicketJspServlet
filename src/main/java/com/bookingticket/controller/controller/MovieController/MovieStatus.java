@@ -33,12 +33,19 @@ public class MovieStatus extends HttpServlet {
         List<MovieDto> movies = movieService.getMoviesByStatus();
         Gson gson = new Gson();
 
+        JsonObject jsonResponse = new JsonObject();
         JsonArray jsonArray = new JsonArray();
         JsonObject jsonObject = new JsonObject();
         movies.forEach(item->{
             JsonObject j = new JsonObject();
-//            j.addProperty("id",item.get);
+            j.addProperty("id",item.getId());
+            j.addProperty("duration",item.getDuration());
+            j.addProperty("url_img",item.getUrl_img());
+            jsonArray.add(j);
         });
-
+//        jsonResponse.add("data",jsonArray);
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().write(jsonArray.toString());
     }
 }

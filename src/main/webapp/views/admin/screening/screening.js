@@ -1,5 +1,67 @@
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+    ev.preventDefault();
+    var data = ev.dataTransfer.getData("text");
+    const dragElement = document.getElementById(data);
+    if (dragElement.id == "drag1") {
+        const clone = dragElement.cloneNode(true);
+        clone.id = generateUUID();
+
+        ev.target.appendChild(clone);
+        clone.addEventListener("ondragstart", (ev) => {
+            ev.dataTransfer.setData("text", ev.target.id);
+        });
+        clone.setAttribute("draggable", "true");
+    } else {
+        ev.target.appendChild(dragElement);
+    }
+    // ==========================================
+    // kiem tra the td gan nhat voi id cha
+    // console.log(ev.target);
+    let target = ev.target;
+    let target_index;
+    let target_id = target.id;
+    let list_td = document.getElementsByTagName("td");
+    for (let i = 0; i < list_td.length; i++) {
+        if (list_td[i].id == target_id) {
+            target_index = i;
+        }
+    }
+
+    if (target_index > 6) {
+        let target_pre = target_index - 7;
+        let td_pre = list_td[target_pre];
+        let time_child = td_pre.querySelector('span');
+        console.log("target_pre",target_pre);
+        console.log("td_pre",td_pre);
+        console.log("time_child",time_child.innerText);
+
+    }
+}
+
+function generateUUID() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+        /[xy]/g,
+        function (c) {
+            var r = (Math.random() * 16) | 0,
+                v = c == "x" ? r : (r & 0x3) | 0x8;
+            return v.toString(16);
+        }
+    );
+}
+// ==================================================================================================================
+// ==================================================================================================================
+// ==================================================================================================================
 const plus = document.querySelector(".plus");
-console.log("vao dc js roi");
+console.log("dang trong file js");
 
 plus.addEventListener("click", (e) => {
     let scheduleBody = document.querySelector("#scheduleBody");
@@ -60,3 +122,5 @@ const list = document.querySelector('#input');
 list.addEventListener('change',(e)=>{
     console.log(list.value)
 })
+
+

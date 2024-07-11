@@ -5,8 +5,8 @@
          version="5.0">
     <welcome-file-list>
         <welcome-file>
-            views/admin/movie/movie.jsp
-<!--            views/admin/screening/screening.jsp-->
+<!--            views/admin/movie/movie.jsp-->
+            views/admin/screening/screening.jsp
 <!--index1.jsp-->
         </welcome-file>
     </welcome-file-list>
