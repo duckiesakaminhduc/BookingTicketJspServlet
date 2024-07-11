@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -7,27 +9,87 @@
             src="https://kit.fontawesome.com/5ec3902171.js"
             crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/views/admin/screening/addphim.cssddphim.css"/>
+    <link rel="stylesheet"
+          href="<c:url value="/views/admin/screening/css/mobiscroll.javascript.min.css"/> ">
+    <link rel="stylesheet" href="<c:url value="/views/admin/screening/screening.css"/> "/>
+    <script src="<c:url value="/views/admin/screening/js/mobiscroll.javascript.min.js"/> "></script>
+
     <title>Title</title>
 </head>
+
 <body>
 <!--
 <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <div id="div3" ondrop="drop(event)" ondragover="allowDrop(event)"></div> -->
 
-<div
-        src="avatar-01.jpg"
-        alt=""
-        id="drag1"
-        draggable="true"
-        ondragstart="drag(event)">
-    child
-</div>
+<h1>xin chao</h1>
 <div class="container">
-    <div class="text-center">
-        <img src="img/content/timetable.png" class="mb-1" alt=""/>
+
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <label for="room">Chọn phòng:</label>
+
+            <select name="room" id="room">
+                <option value="0" selected>Lựa chọn</option>
+                <option value="1">Phòng 1</option>
+                <option value="2">Phòng 2</option>
+                <option value="3">Phòng 3</option>
+                <option value="4">Phòng 4</option>
+            </select>
+        </div>
+
+        <!--  -->
+        <div>
+            <label>
+                <span>Chọn phim</span>
+                <input
+                        mbsc-input
+                        id="input"
+                        placeholder="Please select..."
+                        data-dropdown="true"
+                        data-input-style="outline"
+                        data-label-s
+                        tyle="stacked"
+                        data-tags="true"
+                />
+            </label>
+            <select id="select" multiple>
+                <option value="1">Books</option>
+                <option value="2">Movies</option>
+                <option value="3">Electronics</option>
+                <option value="4">Home</option>
+                <option value="5">Health</option>
+                <option value="6">Toys</option>
+                <option value="7">Clothing</option>
+                <option value="8">Sports</option>
+            </select>
+        </div>
+
+        <button style="margin-left: 20px" class="btn bg-primary text-light">
+            LỌC
+        </button>
     </div>
+
+    <!-- show image -->
+    <div id="list_movies">
+
+        <div class="movie__item">
+            <div
+                    id="drag1"
+                    ondragstart="drag(event)"
+                    draggable="true"
+                    class="card"
+                    style="width: 5rem"
+            >
+                <img src="<c:url value="/views/admin/screening/avatar-01.jpg"/> " class="card-img-top" alt=""/>
+                <div class="card-body">
+                    <p class="card-text">info</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="table">
         <table class="table table-bordered text-center">
             <thead>
@@ -153,6 +215,9 @@
             </tbody>
         </table>
     </div>
+    <div class="text-center">
+        <button type="button" class="btn btn-success">Success</button>
+    </div>
 </div>
 </body>
 
@@ -197,5 +262,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-<script src="${pageContext.request.contextPath}/views/admin/screening/screening.js"></script>
+<%--<script src="${pageContext.request.contextPath}/views/admin/screening/screening.js"></script>--%>
+<script src="<c:url value="/views/admin/screening/screening.js"/> "></script>
 </html>

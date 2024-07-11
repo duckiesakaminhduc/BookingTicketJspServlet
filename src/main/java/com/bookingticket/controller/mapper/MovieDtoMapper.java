@@ -14,9 +14,9 @@ public class MovieDtoMapper implements RowMapper<MovieDto> {
         MovieDto movieDto = new MovieDto();
 
         // Ánh xạ các cột từ ResultSet vào các thuộc tính của MovieDto
-        movieDto.setCreate_at(rs.getTime("create_at"));
+        movieDto.setCreate_at(rs.getTimestamp("create_at"));
         movieDto.setCreate_by(rs.getString("create_by"));
-        movieDto.setModified_at(rs.getTime("modified_at"));
+        movieDto.setModified_at(rs.getTimestamp("modified_at"));
         movieDto.setModified_by(rs.getString("modified_by"));
         movieDto.setCategory(rs.getString("category"));
         movieDto.setCountry(rs.getString("country"));

@@ -5,13 +5,14 @@ import com.bookingticket.controller.database.Database;
 import com.bookingticket.controller.dto.MovieDto;
 import com.bookingticket.controller.dto.MovieEditDto;
 import com.bookingticket.controller.mapper.MovieEditDtoMapper;
+import io.vavr.Tuple3;
+import io.vavr.collection.Seq;
 import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.core.generic.GenericType;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class MovieDaoImpl implements MovieDao {
     private Jdbi jdbi;
@@ -86,42 +87,33 @@ public class MovieDaoImpl implements MovieDao {
 
     @Override
     public boolean addMovie(MovieDto movieDto) {
-        String sql = "INSERT INTO table_name (create_at, create_by, modified_at, modified_by, category, country, duration, format, manager, movie_name, performers, premiere, recommend, subtitle, url_img, status) " +
+        String sql = "INSERT INTO movie (create_at, create_by, modified_at, modified_by, category, country, duration, format, manager, movie_name, performers, premiere, recommend, subtitle, url_img, status) " +
                 "VALUES (:create_at, :create_by, :modified_at, :modified_by, :category, :country, :duration, :format, :manager, :movie_name, :performers, :premiere, :recommend, :subtitle, :url_img, :status)";
+
 
         int re = jdbi.withHandle(handle -> {
             return handle.createUpdate(sql)
-                    .bindBean(MovieDto.class)
+                    .bindBean(movieDto)
                     .execute();
         });
         return re > 0;
     }
 
+    @Override
+    public List<MovieDto> getMoviesByStatus() {
+        String q = "SELECT id,duration,url_img FROM `movie` where status = 2";
+        List<MovieDto> re = new ArrayList<>();
+        re = jdbi.withHandle(handle -> {
+            return handle.createQuery(q)
+                    .mapToBean(MovieDto.class)
+                    .list();
+        });
+        return re;
+    }
+
 
     public static void main(String[] args) {
         MovieDaoImpl m = new MovieDaoImpl();
-        String dateTimeString = "2024-10-29 14:46:29.000000";
-
-        Timestamp timestamp = Timestamp.valueOf(dateTimeString);
-
-        MovieDto movieDto = new MovieDto();
-        movieDto.setCreate_at(Time.valueOf("dateTimeString"));
-        movieDto.setCreate_by("admin");
-        movieDto.setModified_at(Time.valueOf("dateTimeString"));
-        movieDto.setModified_by("admin");
-        movieDto.setCategory("Action");
-        movieDto.setCountry("USA");
-        movieDto.setDuration(120);
-        movieDto.setFormat("2D");
-        movieDto.setManager("John Doe");
-        movieDto.setMovie_name("Test Movie");
-        movieDto.setPerformers("Actor A, Actress B");
-        movieDto.setPremiere("2024-07-10");
-        movieDto.setRecommend("Yes");
-        movieDto.setSubtitle("English");
-        movieDto.setUrl_img("http://example.com/test.jpg");
-        movieDto.setStatus(1);
-
-        System.out.println(m.addMovie(movieDto));
+        System.out.println(m.getMoviesByStatus().toString());
     }
 }

@@ -16,7 +16,7 @@ public class CloudinaryConfig {
 
     static String CLOUDINARY_URL = "cloudinary://692925454987215:YPYpy0ecEItH-tKyt1vU7dRs3eg@dpgnm1bdi";
 
-    static Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
+    public static Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
 
     public void upload() {
         try {
@@ -34,6 +34,7 @@ public class CloudinaryConfig {
 
     public static void main(String[] args) throws IOException {
         Cloudinary c = CloudinaryConfig.cloudinary;
-        System.out.println(c.uploader().upload("https://i.pinimg.com/736x/42/79/dd/4279dd7bb35d713388ed6569ef0c555e.jpg", null));
+        System.out.println(c.uploader().upload("https://i.pinimg.com/736x/42/79/dd/4279dd7bb35d713388ed6569ef0c555e.jpg", null).get("secure_url"));
+
     }
 }

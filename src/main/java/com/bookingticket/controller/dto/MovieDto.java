@@ -2,15 +2,15 @@ package com.bookingticket.controller.dto;
 
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
-import java.sql.Time;
+import java.sql.Timestamp;
 
 public class MovieDto {
     @ColumnName("create_at")
-    private Time create_at;
+    private Timestamp create_at;
     @ColumnName("create_by")
     private String create_by;
     @ColumnName("modified_at")
-    private Time modified_at;
+    private Timestamp modified_at;
     @ColumnName("modified_by")
     private String modified_by;
     @ColumnName("category")
@@ -41,11 +41,11 @@ public class MovieDto {
     public MovieDto() {
     }
 
-    public Time getCreate_at() {
+    public Timestamp getCreate_at() {
         return create_at;
     }
 
-    public void setCreate_at(Time create_at) {
+    public void setCreate_at(Timestamp create_at) {
         this.create_at = create_at;
     }
 
@@ -57,11 +57,11 @@ public class MovieDto {
         this.create_by = create_by;
     }
 
-    public Time getModified_at() {
+    public Timestamp getModified_at() {
         return modified_at;
     }
 
-    public void setModified_at(Time modified_at) {
+    public void setModified_at(Timestamp modified_at) {
         this.modified_at = modified_at;
     }
 
@@ -169,7 +169,7 @@ public class MovieDto {
         this.status = status;
     }
 
-    public MovieDto(Time create_at, String create_by, Time modified_at, String modified_by, String category, String country, int duration, String format, String manager, String movie_name, String performers, String premiere, String recommend, String subtitle, String url_img) {
+    public MovieDto(Timestamp create_at, String create_by, Timestamp modified_at, String modified_by, String category, String country, int duration, String format, String manager, String movie_name, String performers, String premiere, String recommend, String subtitle, String url_img) {
         this.create_at = create_at;
         this.create_by = create_by;
         this.modified_at = modified_at;

@@ -1,5 +1,5 @@
 const plus = document.querySelector(".plus");
-console.log(plus);
+console.log("vao dc js roi");
 
 plus.addEventListener("click", (e) => {
     let scheduleBody = document.querySelector("#scheduleBody");
@@ -45,3 +45,18 @@ function generateUUID() {
         return v.toString(16);
     });
 }
+
+mobiscroll.setOptions({
+    theme: 'ios',
+    themeVariant: 'light'
+});
+
+mobiscroll.select('#select', {
+    inputElement: document.getElementById('input'),
+});
+
+
+const list = document.querySelector('#input');
+list.addEventListener('change',(e)=>{
+    console.log(list.value)
+})

@@ -1,10 +1,15 @@
 package com.bookingticket.controller.service.Impl;
 
 import com.bookingticket.controller.dao.MovieDao;
+import com.bookingticket.controller.dto.MovieDto;
 import com.bookingticket.controller.dto.MovieEditDto;
 import com.bookingticket.controller.service.MovieService;
 
+import java.util.List;
+
 public class MovieServiceImpl implements MovieService {
+
+
 
     MovieDao movieDao;
 
@@ -20,5 +25,15 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public boolean deleteMovieById(Long id) {
         return movieDao.deleteMovieById(id);
+    }
+
+    @Override
+    public boolean addMovie(MovieDto movieDto) {
+        return movieDao.addMovie(movieDto);
+    }
+
+    @Override
+    public List<MovieDto> getMoviesByStatus() {
+        return movieDao.getMoviesByStatus();
     }
 }
