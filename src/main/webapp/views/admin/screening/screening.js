@@ -23,7 +23,8 @@ $(document).ready(function () {
                 <div class="card-body" style="padding: 0.5rem;">
                     <p class="duration card-text text-center" style="margin-bottom: 0;">Time: ${item.duration}'</p>
                 </div>
-            </div>
+            <input class="day"  style="display: none" type="text" value="alo">
+                   </div>
         </div>`;
                 list_movies.append(movie_item);
             })
@@ -34,6 +35,12 @@ $(document).ready(function () {
         }
 
     });
+
+
+    $('#btn_submit').click(function () {
+
+    })
+
 });
 
 
@@ -61,7 +68,7 @@ function drop(ev) {
     const dragElement = document.getElementById(data);
     if (!containsNonNumeric(dragElement.id)) {
         const clone = dragElement.cloneNode(true);
-        clone.id = generateUUID();
+        clone.id = generateUUIDwithRoot(dragElement.id);
 
         ev.target.appendChild(clone);
         clone.addEventListener("ondragstart", (ev) => {
@@ -82,6 +89,10 @@ function drop(ev) {
     for (let i = 0; i < list_td.length; i++) {
         if (list_td[i].id == target_id) {
             target_index = i;
+            let td_target = document.getElementById(target_id);
+            let day_id = i % 7;
+            let day = td_target.querySelector('input')
+            day.value = day_id;
         }
         let td_cur = list_td[i];
         let span_time_child = td_cur.querySelector('span');
@@ -173,8 +184,8 @@ plus.addEventListener("click", (e) => {
     //
 });
 
-function generateUUID() {
-    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
+function generateUUIDwithRoot(rootId) {
+    return rootId + "-xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
         var r = (Math.random() * 16) | 0,
             v = c == "x" ? r : (r & 0x3) | 0x8;
         return v.toString(16);
@@ -201,4 +212,35 @@ function generateUUID() {
 
 
 // ====================================================================================================
-// ====================================================================================================
+// ==========================================LAY RA TOAN BO LICH CHIEU DA SAP XEP==========================================================
+
+
+$(document).ready(function () {
+    $('#btn_submit').click(function () {
+        let screenings = [];
+        var table = document.querySelector('.table');
+        var th_list = table.getElementsByTagName('th');
+        var td_list = document.getElementsByTagName('td')
+        // console.log(td_list)
+        for (let i = 0; i < td_list.length; i++) {
+            let td_item = td_list[i];
+            let time_value = td_item.querySelector('span').innerText;
+            let cards = td_item.getElementsByClassName('card');
+            if (cards.length > 0) {
+                let card = cards[0];
+                let screening = {};
+                let movie_id = card.id.split('-')[0];
+                let day_input = card.getElementsByTagName('input');
+                let day_id = day_input[0].value;
+                let div_sibling = card.previousElementSibling;
+                let span_time = div_sibling.getElementsByTagName('span')[0].innerText;
+                // console.log(span_time)
+                screening.movie_id = movie_id;
+                screening.start_at = span_time;
+                screening.day = day_id;
+                screenings.push(screening);
+            }
+        }
+        console.log(screenings)
+    })
+})

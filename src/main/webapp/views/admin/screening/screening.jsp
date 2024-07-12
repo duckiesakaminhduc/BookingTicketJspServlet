@@ -178,7 +178,7 @@
         </table>
     </div>
     <div class="text-center">
-        <button type="button" class="btn btn-success">Success</button>
+        <button id="btn_submit" type="button" class="btn btn-success">Success</button>
     </div>
 </div>
 </body>
