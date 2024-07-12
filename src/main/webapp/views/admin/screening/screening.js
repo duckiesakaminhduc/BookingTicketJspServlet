@@ -1,7 +1,8 @@
 //load image
 let list_id_root = [];
+let isDataLoaded = false;
+
 $(document).ready(function () {
-    console.log("dang goi ajax")
     $.ajax({
         url: `admin/movie/status`,
         type: "GET",
@@ -16,16 +17,17 @@ $(document).ready(function () {
                     ondragstart="drag(event)"
                     draggable="true"
                     class="card"
-                    style="width: 5rem"
+                    style="width: 5rem; font-size: 0.8em;"
             >
-                <img src="${item.url_img}" class="card-img-top" alt=""/>
-                <div class="card-body">
-                    <p class="card-text">info</p>
+                <img src="${item.url_img}" class="card-img-top img-fluid " alt=""/>
+                <div class="card-body" style="padding: 0.5rem;">
+                    <p class="duration card-text text-center" style="margin-bottom: 0;">Time: ${item.duration}'</p>
                 </div>
             </div>
         </div>`;
                 list_movies.append(movie_item);
             })
+            isDataLoaded = true;
         },
         error: function (xhr, status, error) {
             console.error("Có lỗi xảy ra:", status, error);
@@ -37,6 +39,9 @@ $(document).ready(function () {
 
 //
 
+function containsNonNumeric(str) {
+    return /\D/.test(str);
+}
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -44,14 +49,17 @@ function allowDrop(ev) {
 
 function drag(ev) {
     ev.dataTransfer.setData("text", ev.target.id);
+    // console.log(ev.target.id);
+    let td = document.getElementById(ev.target.id);
+    let span = td.getElementsByTagName('span');
+    console.log(span)
 }
 
 function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     const dragElement = document.getElementById(data);
-    // if (dragElement.id == "drag1") {
-    if (list_id_root.includes(dragElement.id)) {
+    if (!containsNonNumeric(dragElement.id)) {
         const clone = dragElement.cloneNode(true);
         clone.id = generateUUID();
 
@@ -70,21 +78,45 @@ function drop(ev) {
     let target_index;
     let target_id = target.id;
     let list_td = document.getElementsByTagName("td");
+
     for (let i = 0; i < list_td.length; i++) {
         if (list_td[i].id == target_id) {
             target_index = i;
         }
+        let td_cur = list_td[i];
+        let span_time_child = td_cur.querySelector('span');
+        let img = td_cur.querySelector('img');
+        if (span_time_child.innerText !== "08:00" && img == null) {
+            span_time_child.innerText = "Time"
+        }
     }
+
 
     if (target_index > 6) {
         let target_pre = target_index - 7;
+
+
         let td_pre = list_td[target_pre];
         let time_child = td_pre.querySelector('span');
-        console.log("target_pre", target_pre);
-        console.log("td_pre", td_pre);
-        console.log("time_child", time_child.innerText);
+        let duration_p = target.querySelector('p').innerText;
+        let duration = parseInt(duration_p.split(": ")[1].replaceAll("'", ''));
+        let time_parent = target.querySelector('span');
+        let sub = 15;
+        // console.log("target_pre", target_pre);
+        // console.log("td_pre", td_pre);
+        // console.log("time_child_pre", time_child.innerText);
+        // console.log("target_cur",target);
+        // console.log("duration",duration);
+        // console.log("time_parent",time_parent);
+
+        let startTime = moment(time_child.innerText, 'HH:mm');
+
+        let endTime = startTime.add(duration + sub, 'minutes').format("HH:mm");
+        time_parent.innerText = endTime;
+        // console.log(endTime)
 
     }
+
 }
 
 function generateUUID() {
@@ -98,11 +130,11 @@ function generateUUID() {
     );
 }
 
+
 // ==================================================================================================================
 // ==================================================================================================================
 // ==================================================================================================================
 const plus = document.querySelector(".plus");
-console.log("dang 2h30am");
 
 plus.addEventListener("click", (e) => {
     let scheduleBody = document.querySelector("#scheduleBody");
@@ -167,7 +199,6 @@ function generateUUID() {
 
 // ====================================================================================================
 
-console.log("list_id_root", list_id_root)
 
 // ====================================================================================================
 // ====================================================================================================

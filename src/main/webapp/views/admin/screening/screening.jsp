@@ -16,7 +16,7 @@
     <link rel="stylesheet"
           href="<c:url value="/views/admin/screening/css/mobiscroll.javascript.min.css"/> ">
     <script src="<c:url value="/views/admin/screening/js/mobiscroll.javascript.min.js"/> "></script>
-
+    <script src="<c:url value="/views/admin/screening/js/moment-with-locales.js"/> "></script>
     <title>Title</title>
 </head>
 
@@ -37,32 +37,7 @@
             </select>
         </div>
 
-        <!--  -->
-        <div>
-<%--            <label>--%>
-<%--                <span>Chọn phim</span>--%>
-<%--                <input--%>
-<%--                        mbsc-input--%>
-<%--                        id="input"--%>
-<%--                        placeholder="Please select..."--%>
-<%--                        data-dropdown="true"--%>
-<%--                        data-input-style="outline"--%>
-<%--                        data-label-s--%>
-<%--                        tyle="stacked"--%>
-<%--                        data-tags="true"--%>
-<%--                />--%>
-<%--            </label>--%>
-<%--            <select id="select" multiple>--%>
-<%--                <option value="1">Books</option>--%>
-<%--                <option value="2">Movies</option>--%>
-<%--                <option value="3">Electronics</option>--%>
-<%--                <option value="4">Home</option>--%>
-<%--                <option value="5">Health</option>--%>
-<%--                <option value="6">Toys</option>--%>
-<%--                <option value="7">Clothing</option>--%>
-<%--                <option value="8">Sports</option>--%>
-<%--            </select>--%>
-        </div>
+
 
         <button style="margin-left: 20px" class="btn bg-primary text-light">
             LỌC
@@ -73,34 +48,8 @@
     <div id="list_movies" style="display: flex; flex-direction: row;gap: 10px;">
 
         <div class="movie__item">
-            <div
-                    id="drag1"
-                    ondragstart="drag(event)"
-                    draggable="true"
-                    class="card"
-                    style="width: 5rem"
-            >
-                <img src="<c:url value="/views/admin/screening/avatar-01.jpg"/> " class="card-img-top" alt=""/>
-                <div class="card-body">
-                    <p class="card-text">info</p>
-                </div>
-            </div>
         </div>
 
-        <div class="movie__item">
-            <div
-                    id="drag2"
-                    ondragstart="drag(event)"
-                    draggable="true"
-                    class="card"
-                    style="width: 5rem"
-            >
-                <img src="<c:url value="/views/admin/screening/avatar-01.jpg"/> " class="card-img-top" alt=""/>
-                <div class="card-body">
-                    <p class="card-text">info</p>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="table">
