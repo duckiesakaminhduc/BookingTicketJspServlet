@@ -1,3 +1,42 @@
+//load image
+let list_id_root = [];
+$(document).ready(function () {
+    console.log("dang goi ajax")
+    $.ajax({
+        url: `admin/movie/status`,
+        type: "GET",
+        success: function (data) {
+            // console.log(data);
+            const list_movies = $('#list_movies');
+            $.each(data, function (index, item) {
+                list_id_root.push(item.id);
+                const movie_item = `<div class="movie__item">
+            <div
+                    id=${item.id}
+                    ondragstart="drag(event)"
+                    draggable="true"
+                    class="card"
+                    style="width: 5rem"
+            >
+                <img src="${item.url_img}" class="card-img-top" alt=""/>
+                <div class="card-body">
+                    <p class="card-text">info</p>
+                </div>
+            </div>
+        </div>`;
+                list_movies.append(movie_item);
+            })
+        },
+        error: function (xhr, status, error) {
+            console.error("Có lỗi xảy ra:", status, error);
+        }
+
+    });
+});
+
+
+//
+
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -11,7 +50,8 @@ function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
     const dragElement = document.getElementById(data);
-    if (dragElement.id == "drag1") {
+    // if (dragElement.id == "drag1") {
+    if (list_id_root.includes(dragElement.id)) {
         const clone = dragElement.cloneNode(true);
         clone.id = generateUUID();
 
@@ -40,9 +80,9 @@ function drop(ev) {
         let target_pre = target_index - 7;
         let td_pre = list_td[target_pre];
         let time_child = td_pre.querySelector('span');
-        console.log("target_pre",target_pre);
-        console.log("td_pre",td_pre);
-        console.log("time_child",time_child.innerText);
+        console.log("target_pre", target_pre);
+        console.log("td_pre", td_pre);
+        console.log("time_child", time_child.innerText);
 
     }
 }
@@ -57,11 +97,12 @@ function generateUUID() {
         }
     );
 }
+
 // ==================================================================================================================
 // ==================================================================================================================
 // ==================================================================================================================
 const plus = document.querySelector(".plus");
-console.log("dang trong file js");
+console.log("dang 2h30am");
 
 plus.addEventListener("click", (e) => {
     let scheduleBody = document.querySelector("#scheduleBody");
@@ -108,19 +149,25 @@ function generateUUID() {
     });
 }
 
-mobiscroll.setOptions({
-    theme: 'ios',
-    themeVariant: 'light'
-});
+//
+// mobiscroll.setOptions({
+//     theme: 'ios',
+//     themeVariant: 'light'
+// });
+//
+// mobiscroll.select('#select', {
+//     inputElement: document.getElementById('input'),
+// });
 
-mobiscroll.select('#select', {
-    inputElement: document.getElementById('input'),
-});
+//
+// const list = document.querySelector('#input');
+// list.addEventListener('change', (e) => {
+//     console.log(list.value)
+// })
 
+// ====================================================================================================
 
-const list = document.querySelector('#input');
-list.addEventListener('change',(e)=>{
-    console.log(list.value)
-})
+console.log("list_id_root", list_id_root)
 
-
+// ====================================================================================================
+// ====================================================================================================

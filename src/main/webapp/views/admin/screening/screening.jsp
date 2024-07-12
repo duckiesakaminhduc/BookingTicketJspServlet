@@ -9,9 +9,12 @@
             src="https://kit.fontawesome.com/5ec3902171.js"
             crossorigin="anonymous"
     ></script>
+    <link rel="stylesheet" href="<c:url value="/views/admin/screening/screening.css"/> "/>
+
+<%--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <link rel="stylesheet"
           href="<c:url value="/views/admin/screening/css/mobiscroll.javascript.min.css"/> ">
-    <link rel="stylesheet" href="<c:url value="/views/admin/screening/screening.css"/> "/>
     <script src="<c:url value="/views/admin/screening/js/mobiscroll.javascript.min.js"/> "></script>
 
     <title>Title</title>
@@ -36,29 +39,29 @@
 
         <!--  -->
         <div>
-            <label>
-                <span>Chọn phim</span>
-                <input
-                        mbsc-input
-                        id="input"
-                        placeholder="Please select..."
-                        data-dropdown="true"
-                        data-input-style="outline"
-                        data-label-s
-                        tyle="stacked"
-                        data-tags="true"
-                />
-            </label>
-            <select id="select" multiple>
-                <option value="1">Books</option>
-                <option value="2">Movies</option>
-                <option value="3">Electronics</option>
-                <option value="4">Home</option>
-                <option value="5">Health</option>
-                <option value="6">Toys</option>
-                <option value="7">Clothing</option>
-                <option value="8">Sports</option>
-            </select>
+<%--            <label>--%>
+<%--                <span>Chọn phim</span>--%>
+<%--                <input--%>
+<%--                        mbsc-input--%>
+<%--                        id="input"--%>
+<%--                        placeholder="Please select..."--%>
+<%--                        data-dropdown="true"--%>
+<%--                        data-input-style="outline"--%>
+<%--                        data-label-s--%>
+<%--                        tyle="stacked"--%>
+<%--                        data-tags="true"--%>
+<%--                />--%>
+<%--            </label>--%>
+<%--            <select id="select" multiple>--%>
+<%--                <option value="1">Books</option>--%>
+<%--                <option value="2">Movies</option>--%>
+<%--                <option value="3">Electronics</option>--%>
+<%--                <option value="4">Home</option>--%>
+<%--                <option value="5">Health</option>--%>
+<%--                <option value="6">Toys</option>--%>
+<%--                <option value="7">Clothing</option>--%>
+<%--                <option value="8">Sports</option>--%>
+<%--            </select>--%>
         </div>
 
         <button style="margin-left: 20px" class="btn bg-primary text-light">
@@ -231,9 +234,7 @@
 </div>
 </body>
 
-<script>
 
-</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>

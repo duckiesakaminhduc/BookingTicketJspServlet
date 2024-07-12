@@ -29,7 +29,7 @@ public class MovieStatus extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("xin");
+        System.out.println("xin chao");
         List<MovieDto> movies = movieService.getMoviesByStatus();
         Gson gson = new Gson();
 
@@ -39,6 +39,7 @@ public class MovieStatus extends HttpServlet {
         movies.forEach(item->{
             JsonObject j = new JsonObject();
             j.addProperty("id",item.getId());
+            j.addProperty("movie_name",item.getMovie_name());
             j.addProperty("duration",item.getDuration());
             j.addProperty("url_img",item.getUrl_img());
             jsonArray.add(j);

@@ -101,7 +101,7 @@ public class MovieDaoImpl implements MovieDao {
 
     @Override
     public List<MovieDto> getMoviesByStatus() {
-        String q = "SELECT id,duration,url_img FROM `movie` where status = 2";
+        String q = "SELECT id,duration,url_img,movie_name FROM `movie` where status = 2";
         List<MovieDto> re = new ArrayList<>();
         re = jdbi.withHandle(handle -> {
             return handle.createQuery(q)
