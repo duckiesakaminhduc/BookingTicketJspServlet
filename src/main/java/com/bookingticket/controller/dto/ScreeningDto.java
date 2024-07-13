@@ -15,14 +15,18 @@ public class ScreeningDto {
     @ColumnName("movie_id")
     private Long movie_id;
 
+    @ColumnName("td_id")
+    private int td_id;
+
     public ScreeningDto() {
     }
 
-    public ScreeningDto(Long id, LocalDateTime day, LocalTime start_at, Long movie_id) {
+    public ScreeningDto(Long id, LocalDateTime day, LocalTime start_at, Long movie_id, int td_id) {
         this.id = id;
         this.day = day;
         this.start_at = start_at;
         this.movie_id = movie_id;
+        this.td_id = td_id;
     }
 
     public Long getId() {
@@ -57,9 +61,11 @@ public class ScreeningDto {
         this.movie_id = movie_id;
     }
 
-    public ScreeningDto(LocalDateTime day, LocalTime start_at, Long movie_id) {
-        this.day = day;
-        this.start_at = start_at;
-        this.movie_id = movie_id;
+    public int getTd_id() {
+        return td_id;
+    }
+
+    public void setTd_id(int td_id) {
+        this.td_id = td_id;
     }
 }

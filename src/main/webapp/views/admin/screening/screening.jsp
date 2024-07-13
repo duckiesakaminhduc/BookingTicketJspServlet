@@ -25,6 +25,19 @@
 <div class="container">
 
     <div class="d-flex justify-content-between align-items-center">
+
+        <div>
+            <label for="room">Chọn rạp:</label>
+
+            <select name="theater" id="theater">
+                <option value="0" selected>Lựa chọn</option>
+                <option value="1">CINESTAR SINH VIÊN</option>
+                <option value="2">CINESTAR HAI BÀ TRƯNG</option>
+                <option value="3">CINESTAR ĐÀ LẠT</option>
+                <option value="4">CINESTAR HUẾ</option>
+            </select>
+        </div>
+
         <div>
             <label for="room">Chọn phòng:</label>
 
@@ -39,7 +52,7 @@
 
 
 
-        <button style="margin-left: 20px" class="btn bg-primary text-light">
+        <button id="btn_filter" style="margin-left: 20px" class="btn bg-primary text-light">
             LỌC
         </button>
     </div>
@@ -55,14 +68,14 @@
     <div class="table">
         <table class="table table-bordered text-center">
             <thead>
-            <tr class="bg-light-gray">
-                <th class="text-uppercase">Monday</th>
-                <th class="text-uppercase">Tuesday</th>
-                <th class="text-uppercase">Wednesday</th>
-                <th class="text-uppercase">Thursday</th>
-                <th class="text-uppercase">Friday</th>
-                <th class="text-uppercase">Saturday</th>
-                <th class="text-uppercase">Sunday</th>
+            <tr id="tr" class="bg-light-gray">
+<%--                <th class="text-uppercase">Monday</th>--%>
+<%--                <th class="text-uppercase">Tuesday</th>--%>
+<%--                <th class="text-uppercase">Wednesday</th>--%>
+<%--                <th class="text-uppercase">Thursday</th>--%>
+<%--                <th class="text-uppercase">Friday</th>--%>
+<%--                <th class="text-uppercase">Saturday</th>--%>
+<%--                <th class="text-uppercase">Sunday</th>--%>
             </tr>
             </thead>
             <tbody id="scheduleBody">

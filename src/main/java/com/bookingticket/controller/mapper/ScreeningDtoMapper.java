@@ -17,7 +17,7 @@ public class ScreeningDtoMapper implements RowMapper<ScreeningDto> {
         screeningDto.setDay(rs.getObject("day", LocalDateTime.class));
         screeningDto.setStart_at(rs.getObject("start_at", LocalTime.class));
         screeningDto.setMovie_id(rs.getLong("movie_id"));
-
+        screeningDto.setTd_id(rs.getInt("td_id"));
         return screeningDto;
     }
 }

@@ -29,7 +29,6 @@ public class MovieStatus extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("xin chao");
         List<MovieDto> movies = movieService.getMoviesByStatus();
         Gson gson = new Gson();
 
