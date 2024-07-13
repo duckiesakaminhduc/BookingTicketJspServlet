@@ -22,19 +22,44 @@ public class ScreeningDaoImpl implements ScreeningDao {
         jdbi.registerRowMapper(new ScreeningGetDtoMapper());
     }
 
+//    @Override
+//    public boolean insertScreening(ScreeningDto screeningDto) {
+//        String q = "Insert into screening(day,start_at,movie_id,td_id) values(?,?,?,?)";
+//        int re = jdbi.withHandle(handle -> {
+//            return handle.createUpdate(q)
+//                    .bind(0, screeningDto.getDay())
+//                    .bind(1, screeningDto.getStart_at())
+//                    .bind(2, screeningDto.getMovie_id())
+//                    .bind(3, screeningDto.getTd_id())
+//                    .execute();
+//        });
+//        return re > 0;
+//    }
+
     @Override
-    public boolean insertScreening(ScreeningDto screeningDto) {
-        String q = "Insert into screening(day,start_at,movie_id,td_id) values(?,?,?,?)";
-        int re = jdbi.withHandle(handle -> {
-            return handle.createUpdate(q)
+    public boolean insertScreening(ScreeningDto screeningDto, Long room_id) {
+        String q = "Insert into screening(day, start_at, movie_id, td_id) values (?, ?, ?, ?)";
+        String q1 = "Insert into screening_room(screening_id, room_id) values (?, ?)";
+
+        int count = jdbi.inTransaction(handle -> {
+            int screening_id = handle.createUpdate(q)
                     .bind(0, screeningDto.getDay())
                     .bind(1, screeningDto.getStart_at())
                     .bind(2, screeningDto.getMovie_id())
                     .bind(3, screeningDto.getTd_id())
+                    .executeAndReturnGeneratedKeys("screening_id")
+                    .mapTo(Integer.class)
+                    .findOnly();
+
+            return handle.createUpdate(q1)
+                    .bind(0, screening_id)
+                    .bind(1, room_id)
                     .execute();
         });
-        return re > 0;
+
+        return count > 0;
     }
+
 
     @Override
     public List<ScreeningGetDto> getScreenings(Long theater_id, Long room_id) {
@@ -58,12 +83,11 @@ public class ScreeningDaoImpl implements ScreeningDao {
 
     public static void main(String[] args) {
         ScreeningDao screeningDao = new ScreeningDaoImpl();
-//        ScreeningDto screeningDto = new ScreeningDto(
-//                LocalDateTime.of(2024, 7, 15, 14, 0),
-//                LocalTime.of(14, 0),
-//                1L
-//        );
-//        System.out.println(screeningDao.insertScreening(screeningDto));
-        System.out.println(screeningDao.getScreenings(3l, 11l).toString());
+        ScreeningDto screeningDto = new ScreeningDto(24l,
+                LocalDateTime.of(2024, 7, 15, 14, 0),
+                LocalTime.of(14, 0), 3l, 1);
+
+        System.out.println(screeningDao.insertScreening(screeningDto,1l));
+//        System.out.println(screeningDao.getScreenings(3l, 11l).toString());
     }
 }

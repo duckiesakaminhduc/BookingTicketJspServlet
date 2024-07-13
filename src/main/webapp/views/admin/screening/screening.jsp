@@ -65,6 +65,11 @@
 
     </div>
 
+
+    <button id="change" style="margin-left: 20px" class="btn bg-primary text-light">
+        SAVE CHANGE
+    </button>
+
     <div class="table">
         <table class="table table-bordered text-center">
             <thead>

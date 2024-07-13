@@ -16,12 +16,12 @@ public class ScreeningServiceImpl implements ScreeningService {
     }
 
     @Override
-    public boolean insertScreening(ScreeningDto screeningDto) {
-        return screeningDao.insertScreening(screeningDto);
+    public boolean insertScreening(ScreeningDto screeningDto, Long room_id) {
+        return screeningDao.insertScreening(screeningDto, room_id);
     }
 
     @Override
     public List<ScreeningGetDto> getScreenings(Long theater_id, Long room_id) {
-        return screeningDao.getScreenings(theater_id,room_id);
+        return screeningDao.getScreenings(theater_id, room_id);
     }
 }

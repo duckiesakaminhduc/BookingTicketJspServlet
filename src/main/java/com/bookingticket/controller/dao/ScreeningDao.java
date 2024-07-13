@@ -6,7 +6,7 @@ import com.bookingticket.controller.dto.ScreeningGetDto;
 import java.util.List;
 
 public interface ScreeningDao {
-    public boolean insertScreening(ScreeningDto screeningDto);
 
-public List<ScreeningGetDto> getScreenings(Long theater_id, Long room_id);
+    public boolean insertScreening(ScreeningDto screeningDto, Long room_id);
+    public List<ScreeningGetDto> getScreenings(Long theater_id, Long room_id);
 }

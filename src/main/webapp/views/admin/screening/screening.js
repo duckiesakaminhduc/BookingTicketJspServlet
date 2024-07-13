@@ -1,7 +1,8 @@
 //load image
 let list_id_root = [];
 let isDataLoaded = false;
-
+let initTableState = []; // declare globally
+let afterChangeTable = []; // declare globally
 $(document).ready(function () {
     $.ajax({
         url: `admin/movie/status`,
@@ -23,7 +24,7 @@ $(document).ready(function () {
                 <div class="card-body" style="padding: 0.5rem;">
                     <p class="duration card-text text-center" style="margin-bottom: 0;">Time: ${item.duration}'</p>
                 </div>
-            <input class="day" type="text" value="alo">
+            <input class="day" type="text" value="day_id">
             <div class="td_id">td_id </div>
                    </div>
         </div>`;
@@ -34,18 +35,89 @@ $(document).ready(function () {
         error: function (xhr, status, error) {
             console.error("Có lỗi xảy ra:", status, error);
         }
-
     });
 
-
     $('#btn_submit').click(function () {
+        console.log("Bắt đầu quá trình submit");
+        console.log("Số lượng td:", $('.table td').length);
+        console.log("Nội dung của tr đầu tiên:", $('#tr').html());
 
-    })
+        var theater_id = Number($("#theater").val());
+        var room_id = Number($("#room").val()) + 4 * (theater_id - 1);
 
+        let screenings = [];
+        var table = document.querySelector('.table');
+        if (!table) {
+            console.error('Không tìm thấy bảng');
+            return;
+        }
+        var th_list = table.getElementsByTagName('th');
+        var td_list = table.getElementsByTagName('td');
+        if (!td_list || td_list.length === 0) {
+            console.error('Không tìm thấy phần tử td nào');
+            return;
+        }
+
+        for (let i = 0; i < td_list.length; i++) {
+            let td_item = td_list[i];
+            let time_span = td_item.querySelector('span');
+            if (!time_span) continue;
+
+            let cards = td_item.getElementsByClassName('card');
+            if (cards.length > 0) {
+                let card = cards[0];
+                let screening = {};
+                let movie_id = card.id.split('-')[0];
+                let day_input = card.querySelector('input');
+                if (!day_input) continue;
+
+                let day_id = day_input.value;
+                let div_sibling = card.previousElementSibling;
+                if (!div_sibling) continue;
+
+                let span_time = div_sibling.querySelector('span');
+                if (!span_time) continue;
+
+                let tr_root = document.querySelector('#tr');
+                if (!tr_root) continue;
+
+                let th = tr_root.getElementsByTagName('th');
+                if (!th || th.length <= day_id) continue;
+
+                let td_id = card.querySelector(".td_id");
+                if (!td_id) continue;
+
+                screening.movie_id = movie_id;
+                screening.start_at = span_time.innerText;
+                screening.day = th[day_id].innerText;
+                screening.td_id = td_id.textContent;
+                screenings.push(screening);
+            }
+        }
+
+        if (screenings.length === 0) {
+            console.error('Không tìm thấy lịch chiếu nào');
+            return;
+        }
+
+        console.log("Lịch chiếu sẽ được gửi:", screenings);
+        $.ajax({
+            url: "admin/screening",
+            type: "POST",
+            contentType: "application/json;charset=UTF-8",
+            data: JSON.stringify({
+                "screenings": screenings,
+                "room_id": room_id
+            }),
+            success: function (data) {
+                console.log('Gửi lịch chiếu thành công');
+            },
+            error: function (xhr, status, error) {
+                console.error("Lỗi khi gửi lịch chiếu:", error);
+            }
+        });
+    });
 });
-
-
-//
 
 function containsNonNumeric(str) {
     return /\D/.test(str);
@@ -105,10 +177,8 @@ function drop(ev) {
         }
     }
 
-
     if (target_index > 6) {
         let target_pre = target_index - 7;
-
 
         let td_pre = list_td[target_pre];
         let time_child = td_pre.querySelector('span');
@@ -122,9 +192,7 @@ function drop(ev) {
         let endTime = startTime.add(duration + sub, 'minutes').format("HH:mm");
         time_parent.innerText = endTime;
         // console.log(endTime)
-
     }
-
 }
 
 function generateUUID() {
@@ -137,7 +205,6 @@ function generateUUID() {
         }
     );
 }
-
 
 // ==================================================================================================================
 // ==================================================================================================================
@@ -177,8 +244,6 @@ plus.addEventListener("click", (e) => {
         tr.appendChild(td);
     }
     scheduleBody.appendChild(tr);
-
-    //
 });
 
 function generateUUIDwithRoot(rootId) {
@@ -188,77 +253,6 @@ function generateUUIDwithRoot(rootId) {
         return v.toString(16);
     });
 }
-
-//
-// mobiscroll.setOptions({
-//     theme: 'ios',
-//     themeVariant: 'light'
-// });
-//
-// mobiscroll.select('#select', {
-//     inputElement: document.getElementById('input'),
-// });
-
-//
-// const list = document.querySelector('#input');
-// list.addEventListener('change', (e) => {
-//     console.log(list.value)
-// })
-
-// ====================================================================================================
-
-
-// ====================================================================================================
-// ==========================================LAY RA TOAN BO LICH CHIEU DA SAP XEP==========================================================
-
-
-$(document).ready(function () {
-    $('#btn_submit').click(function () {
-        let screenings = [];
-        var table = document.querySelector('.table');
-        var th_list = table.getElementsByTagName('th');
-        var td_list = document.getElementsByTagName('td')
-        // console.log(td_list)
-        for (let i = 0; i < td_list.length; i++) {
-            let td_item = td_list[i];
-            let time_value = td_item.querySelector('span').innerText;
-            let cards = td_item.getElementsByClassName('card');
-            if (cards.length > 0) {
-                let card = cards[0];
-                let screening = {};
-                let movie_id = card.id.split('-')[0];
-                let day_input = card.getElementsByTagName('input');
-                let day_id = day_input[0].value;
-                let div_sibling = card.previousElementSibling;
-                let span_time = div_sibling.getElementsByTagName('span')[0].innerText;
-                let tr_root = document.querySelector('#tr');
-                let th = tr_root.getElementsByTagName('th');
-                let td_id = card.getElementsByClassName("td_id")[0]
-
-                console.log(div_sibling)
-
-                screening.movie_id = movie_id;
-                screening.start_at = span_time;
-                screening.day = th[day_id].innerText;
-                screening.td_id = td_id.textContent;
-                screenings.push(screening);
-            }
-        }
-        console.log(screenings)
-        $.ajax({
-            url: "admin/screening",
-            type: "POST",
-            contentType: "application/json;charset=UTF-8",
-            data: JSON.stringify({
-                "screenings": screenings
-            }),
-            success: function (data) {
-                console.log('thanh cong');
-            }
-        })
-    })
-})
-
 
 //load ngay
 $(document).ready(function () {
@@ -285,10 +279,11 @@ function removeRows() {
 }
 
 $(document).ready(function () {
+
     $('#btn_filter').click(function () {
         var theater_id = Number($("#theater").val());
         var room_id = Number($("#room").val()) + 4 * (theater_id - 1);
-
+        console.log(room_id);
         removeRows();
 
         $.ajax({
@@ -301,7 +296,7 @@ $(document).ready(function () {
             }),
             dataType: "json",
             success: function (data) {
-                console.log(data)
+                // console.log(data)
                 const maxTdId = Math.max(...data.map(item => parseInt(item.td_id)));
                 const td_item_id = data.map(item => parseInt(item.td_id))
                 let limit = maxTdId % 7;
@@ -341,7 +336,6 @@ $(document).ready(function () {
                             `height: 90px; width: 90px; position: relative;margin-bottom: 50px`
                         );
 
-
                         tr.appendChild(td);
                     }
                     scheduleBody.appendChild(tr);
@@ -371,9 +365,81 @@ $(document).ready(function () {
                     td_cur.appendChild(img_container);
                 }
 
+                // console.log("Cấu trúc bảng sau khi filter:");
+                // console.log($('.table').html());
+
+                setTimeout(function () {
+                    $('#btn_submit').prop('disabled', false);
+                }, 500);
+                initTableState = saveInitialTableState();
+                console.log(initTableState)
             }
         })
+
+
     })
+})
 
+function saveInitialTableState() {
+    let initTableState = [];
+    let table = document.querySelector("table");
+    let td_list = table.getElementsByTagName("td");
+    let th_list = table.getElementsByTagName("th");
+    for (let i = 0; i < td_list.length; i++) {
+        let td_item = td_list[i];
+        let cards = td_item.getElementsByClassName("card");
+        if (cards.length > 0) {
+            let card = cards[0];
 
+            let td_id_div = card.querySelector(".td_id")
+            let day_id_div = card.querySelector(".day")
+            let dayIndex = parseInt(day_id_div.value);
+            let screening = {};
+
+            screening.td_id = td_id_div.innerHTML;
+            screening.card_id = card.getAttribute("id") || null;
+            screening.day = th_list[dayIndex].innerText;
+            screening.time = td_item.getElementsByTagName("span")[0].innerText;
+            initTableState.push(screening);
+        }
+    }
+    return initTableState;
+    // console.log(initTableState) ;
+}
+
+function classifyChanges(oldArray, newArray) {
+    let addedItems = [];
+    let changedItems = [];
+
+    // Map for quick access
+    let oldMap = {};
+    oldArray.forEach(item => {
+        oldMap[item.td_id] = item;
+    });
+
+    // Check new array
+    newArray.forEach(item => {
+        if (!oldMap.hasOwnProperty(item.td_id)) {
+            // New item
+            addedItems.push(item);
+        } else if (oldMap[item.td_id].card_id !== item.card_id ||
+            oldMap[item.td_id].day !== item.day ||
+            oldMap[item.td_id].time !== item.time) {
+            // Changed item
+            changedItems.push(item);
+        }
+    });
+
+    return {
+        addedItems: addedItems,
+        changedItems: changedItems
+    };
+}
+
+$(document).ready(function () {
+    $("#change").click(function () {
+        afterChangeTable = saveInitialTableState();
+        console.log(afterChangeTable)
+        console.log(classifyChanges(initTableState, afterChangeTable))
+    })
 })

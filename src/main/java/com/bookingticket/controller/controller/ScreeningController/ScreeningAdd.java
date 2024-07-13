@@ -35,8 +35,10 @@ public class ScreeningAdd extends HttpServlet {
         BufferedReader reader = req.getReader();
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-        List<Map<String, String>> screenings = gson.fromJson(jsonObject.get("screenings"), List.class);
+        Long room_id = jsonObject.get("room_id").getAsLong();
 
+//
+        List<Map<String, String>> screenings = gson.fromJson(jsonObject.get("screenings"), List.class);
         List<ScreeningDto> screeningDtos = new ArrayList<>();
 
         screenings.forEach(item -> {
@@ -73,9 +75,10 @@ public class ScreeningAdd extends HttpServlet {
             screeningDtos.add(screeningDto);
         });
         screeningDtos.forEach(item -> {
-            screeningService.insertScreening(item);
+            screeningService.insertScreening(item, room_id);
         });
         System.out.println(screeningDtos.toString());
 
+        System.out.println("XIN CHAO");
     }
 }

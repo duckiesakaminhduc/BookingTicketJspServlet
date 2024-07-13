@@ -32,13 +32,13 @@ public class ScreeningGet extends HttpServlet {
         BufferedReader reader = req.getReader();
         Gson gson = new Gson();
         JsonObject jsonObject = gson.fromJson(reader,JsonObject.class);
+//        Long room_id = jsonObject.get("room_id").getAsLong();
+//        System.out.println("room_id "+room_id);
 
 
         Long theater_id = jsonObject.get("theater_id").getAsLong();
         Long room_id = jsonObject.get("room_id").getAsLong();
-        System.out.println("dang trong get screeenig");
         List<ScreeningGetDto> list = screeningService.getScreenings(theater_id,room_id);
-        System.out.println(list.toString());
 
         String json = gson.toJson(list);
 
