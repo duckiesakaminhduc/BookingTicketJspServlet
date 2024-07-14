@@ -4,6 +4,7 @@ import com.bookingticket.controller.dao.MovieDao;
 import com.bookingticket.controller.database.Database;
 import com.bookingticket.controller.dto.MovieDto;
 import com.bookingticket.controller.dto.MovieEditDto;
+import com.bookingticket.controller.mapper.MovieDtoMapper;
 import com.bookingticket.controller.mapper.MovieEditDtoMapper;
 import io.vavr.Tuple3;
 import io.vavr.collection.Seq;
@@ -20,6 +21,7 @@ public class MovieDaoImpl implements MovieDao {
     public MovieDaoImpl() {
         this.jdbi = Database.getJdbi();
         jdbi.registerRowMapper(new MovieEditDtoMapper());
+        jdbi.registerRowMapper(new MovieDtoMapper());
     }
 
     @Override
@@ -111,9 +113,30 @@ public class MovieDaoImpl implements MovieDao {
         return re;
     }
 
+    @Override
+    public List<MovieDto> getAllMovies() {
+        String q = "Select * from movie";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(q)
+                    .mapTo(MovieDto.class)
+                    .list();
+        });
+    }
+
+    @Override
+    public MovieDto getMovieByMovie_ID(Long id) {
+        String q = "Select * from movie where id = ?";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(q)
+                    .bind(0, id)
+                    .mapTo(MovieDto.class)
+                    .findOnly();
+        });
+    }
+
 
     public static void main(String[] args) {
         MovieDaoImpl m = new MovieDaoImpl();
-        System.out.println(m.getMoviesByStatus().toString());
+        System.out.println(m.getMovieByMovie_ID(1l));
     }
 }

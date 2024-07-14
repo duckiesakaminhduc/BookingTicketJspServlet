@@ -13,4 +13,9 @@ public interface MovieService {
     public boolean addMovie(MovieDto movieDto);
 
     public List<MovieDto> getMoviesByStatus();
+
+    public List<MovieDto> getAllMovies();
+
+    public MovieDto getMovieByMovie_ID(Long id);
+
 }

@@ -36,4 +36,12 @@ public class MovieServiceImpl implements MovieService {
     public List<MovieDto> getMoviesByStatus() {
         return movieDao.getMoviesByStatus();
     }
+
+    @Override
+    public List<MovieDto> getAllMovies() {
+        return movieDao.getAllMovies();
+    }
+    public MovieDto getMovieByMovie_ID(Long id){
+        return movieDao.getMovieByMovie_ID(id);
+    }
 }

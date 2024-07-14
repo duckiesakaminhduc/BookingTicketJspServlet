@@ -19,4 +19,8 @@ public interface MovieDao {
 //    @RegisterBeanMapper(MovieDto.class)
     public List<MovieDto> getMoviesByStatus();
 
+    public List<MovieDto> getAllMovies();
+
+    public MovieDto getMovieByMovie_ID(Long id);
+
 }

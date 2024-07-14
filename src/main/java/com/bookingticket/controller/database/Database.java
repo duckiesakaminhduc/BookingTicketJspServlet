@@ -3,7 +3,7 @@ package com.bookingticket.controller.database;
 import org.jdbi.v3.core.Jdbi;
 
 public class Database {
-    private static String URL = "jdbc:mysql://localhost:3306/booking_ticket";
+    private static String URL = "jdbc:mysql://localhost:3306/booking_ticket?useUnicode=true&characterEncoding=UTF-8";
     private static String USER = "root";
     private static String PASS = "root";
     private static org.jdbi.v3.core.Jdbi jdbi;
