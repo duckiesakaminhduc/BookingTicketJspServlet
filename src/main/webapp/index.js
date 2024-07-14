@@ -16,7 +16,7 @@ $(document).ready(function () {
                     </div>
                     <div class="card__data">
                         <h3 class="card__name">${item.movie_name}</h3>
-                        <a href="#" class="card__button btn">Đặt vé</a>
+                        <a href="http://localhost:8080/BookingTicket//movie/detail?movie_id=${item.id}" class="card__button btn">Đặt vé</a>
                     </div>
                 `;
                 slide_root.appendChild(article);

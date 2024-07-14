@@ -2,9 +2,12 @@ package com.bookingticket.controller.controller.MovieController;
 
 import com.bookingticket.controller.dao.Impl.MovieDaoImpl;
 import com.bookingticket.controller.dao.MovieDao;
+import com.bookingticket.controller.dto.MovieDto;
 import com.bookingticket.controller.service.Impl.MovieServiceImpl;
 import com.bookingticket.controller.service.MovieService;
+import com.google.gson.Gson;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "movie/detail")
+@WebServlet(urlPatterns = "/movie/detail")
 public class MovieGetById extends HttpServlet {
     MovieService movieService;
     MovieDao movieDao;
@@ -24,6 +27,13 @@ public class MovieGetById extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("TEST MOVIE DETAIL");
+        Long movie_id = Long.valueOf(req.getParameter("movie_id"));
+        MovieDto movieDto = movieService.getMovieByMovie_ID(movie_id);
+        req.setAttribute("movie", movieDto);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/views/web/movie_detail.jsp");
+        dispatcher.forward(req, resp);
+
+        System.out.println("Dang tỏng movie detail");
+
     }
 }

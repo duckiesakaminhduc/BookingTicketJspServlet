@@ -22,8 +22,7 @@
     <section class="sec__detail">
         <div class="detail">
             <div class="detail__img">
-<%--                <img src="<c:url value="/template/../../template/assets/images/quat-mo-trung-ma.jpg"/> " alt="">--%>
-                <img src="../../template/assets/images/quat-mo-trung-ma.jpg" alt="">
+                <img style="border-radius: 10px" src="${movie.url_img}" alt="">
                 <div class="attach">
                     <div class="type__movie">
                         <span class="txt">2d</span>
@@ -33,21 +32,22 @@
             </div>
             <div class="detail__info">
                 <div class="detail__info--title">
-                    <h1>QUẬT MỘ TRÙNG MA (T16)</h1>
+                    <h1>${movie.movie_name}</h1>
                 </div>
                 <ul class="detail__info--detail">
-                    <li><i class="fa-solid fa-tag" style="color: #FFD43B;"></i><span>Kinh di</span></li>
-                    <li><i class="fa-solid fa-clock" style="color: #FFD43B;"></i><span>150'</span></li>
-                    <li><i class="fa-solid fa-earth-americas" style="color: #FFD43B;"></i><span>Khac</span></li>
-                    <li><i class="fa-solid fa-user-check" style="color: #FFD43B;"></i><span>T16: Phim dành cho khán
-                                giả từ đủ 16 tuổi trở lên.T16: Phim dành cho khán giả từ đủ 16 tuổi trở lên.</span></li>
+                    <li><i class="fa-solid fa-tag" style="color: #FFD43B;"></i><span class="category">Kinh di</span>
+                    </li>
+                    <li><i class="fa-solid fa-clock" style="color: #FFD43B;"></i><span class="duration">${movie.duration}'</span></li>
+                    <li><i class="fa-solid fa-earth-americas" style="color: #FFD43B;"></i><span
+                            class="country">${movie.country}</span></li>
+                    <li><i class="fa-solid fa-user-check" style="color: #FFD43B;"></i><span class="recommend">${movie.recommend}.</span></li>
                 </ul>
                 <div class="detail__info--describe">
                     <h3>MÔ TẢ</h3>
                     <ul class="detail__info--describe--detail">
-                        <li>Đạo diễn: Jang Jae Hyun</li>
-                        <li>Diễn viên: Choi Min Sik, Yoo Hai Jin, Kim Go Eun, Lee Do Hyun,...</li>
-                        <li>Khởi chiếu: 15/03/2024</li>
+                        <li class="manager">Đạo diễn: ${movie.manager}</li>
+                        <li class="performers">Diễn viên: ${movie.performers},...</li>
+                        <li class="premiere">Khởi chiếu: ${premiere}</li>
                     </ul>
                 </div>
                 <div class="detail__info--content">
@@ -160,14 +160,14 @@
     </section>
 </div>
 
-<div id="popup__wrapper" class="modal">
-    <div class="content">
-        Vui lòng chọn tối đa 8 vé
-        <button class="noti__btn">
-            <div class="txt">OK</div>
-        </button>
-    </div>
-</div>
+<%--<div id="popup__wrapper" class="modal">--%>
+<%--    <div class="content">--%>
+<%--        Vui lòng chọn tối đa 8 vé--%>
+<%--        <button class="noti__btn">--%>
+<%--            <div class="txt">OK</div>--%>
+<%--        </button>--%>
+<%--    </div>--%>
+<%--</div>--%>
 
 <div class="seat">
     <div class="seat__heading">
@@ -931,6 +931,8 @@
 <div class="shtime__footer"></div>
 <p>git hub</p>
 </body>
-<script src="<c:url value="/template/web/book_moive.js" />"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="<c:url value="/template/web/movie_detail.js" />"></script>
 
 </html>

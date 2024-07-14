@@ -2,8 +2,10 @@ package com.bookingticket.controller.dao.Impl;
 
 import com.bookingticket.controller.dao.ScreeningDao;
 import com.bookingticket.controller.database.Database;
+import com.bookingticket.controller.dto.ScreeningByMovieDto;
 import com.bookingticket.controller.dto.ScreeningDto;
 import com.bookingticket.controller.dto.ScreeningGetDto;
+import com.bookingticket.controller.mapper.ScreeningByMovieDtoMapper;
 import com.bookingticket.controller.mapper.ScreeningDtoMapper;
 import com.bookingticket.controller.mapper.ScreeningGetDtoMapper;
 import org.jdbi.v3.core.Jdbi;
@@ -20,6 +22,7 @@ public class ScreeningDaoImpl implements ScreeningDao {
         this.jdbi = Database.getJdbi();
         jdbi.registerRowMapper(new ScreeningDtoMapper());
         jdbi.registerRowMapper(new ScreeningGetDtoMapper());
+        jdbi.registerRowMapper(new ScreeningByMovieDtoMapper());
     }
 
 //    @Override
@@ -81,13 +84,29 @@ public class ScreeningDaoImpl implements ScreeningDao {
         return list;
     }
 
+    @Override
+    public List<ScreeningByMovieDto> getScreeningsByMovieId(Long id) {
+        String q = "SELECT s.id, DATE_FORMAT(s.`day`, '%d/%m') AS day, DAYNAME(s.`day`) AS day_of_week " +
+                "FROM screening s " +
+                "JOIN movie m ON m.id = s.movie_id " +
+                "JOIN theater_movie tm ON tm.movie_id = m.id " +
+                "where m.id = ?; ";
+        return jdbi.withHandle(handle -> {
+            return handle.createQuery(q)
+                    .bind(0, id)
+                    .mapTo(ScreeningByMovieDto.class)
+                    .list();
+        });
+    }
+
     public static void main(String[] args) {
         ScreeningDao screeningDao = new ScreeningDaoImpl();
         ScreeningDto screeningDto = new ScreeningDto(24l,
                 LocalDateTime.of(2024, 7, 15, 14, 0),
                 LocalTime.of(14, 0), 3l, 1);
 
-        System.out.println(screeningDao.insertScreening(screeningDto,1l));
+//        System.out.println(screeningDao.insertScreening(screeningDto, 1l));
 //        System.out.println(screeningDao.getScreenings(3l, 11l).toString());
+        System.out.println(screeningDao.getScreeningsByMovieId(1l));
     }
 }

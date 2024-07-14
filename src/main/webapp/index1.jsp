@@ -12,7 +12,7 @@
 <a href="views/login.jsp">login</a>
 <a href="views/register.jsp">login</a>
 
-<a href="views/web/book_movie.jsp">booking ticket</a>
+<a href="views/web/movie_detail.jsp">booking ticket</a>
 <a href="index.jsp">index</a>
 <a href="common/">Hello Servlet</a>
 <a href="views/google.jsp">google</a>

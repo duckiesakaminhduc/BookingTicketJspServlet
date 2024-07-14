@@ -1,3 +1,17 @@
+// call api
+// $(document).ready(function () {
+//     console.log('x');
+//     $.ajax({
+//         url: `http://localhost:8080/BookingTicket/movie/detail?movie_id=1`,
+//         type: "GET",
+//         success: function (data) {
+//             console.log(data)
+//
+//         }
+//     })
+// })
+
+//
 const enable__shtime = document.querySelectorAll('.shtime__item');
 const btn__noti = document.querySelector('.noti__btn');
 const popup = document.querySelector('#popup__wrapper')
@@ -43,7 +57,8 @@ minus_s.addEventListener("click", () => {
         isCount--; // Tăng giá trị của cf lên 1
         count_s.innerHTML = isCount; // Gán giá trị mới của cf vào textContent của count_f
     }
-}); minus_t.addEventListener("click", () => {
+});
+minus_t.addEventListener("click", () => {
     let isCount = parseInt(count_t.textContent)
     if (isCount >= 1) {
         isCount--; // Tăng giá trị của cf lên 1
@@ -70,8 +85,6 @@ plus_s.addEventListener('click', () => {
 })
 
 
-
-
 plus_t.addEventListener('click', () => {
     let isCount = parseInt(count_t.textContent)
     if (isCount <= 7) {
@@ -79,7 +92,6 @@ plus_t.addEventListener('click', () => {
         count_t.innerHTML = isCount; // Gán giá trị mới của cf vào textContent của count_f
     }
 })
-
 
 
 let count;
@@ -90,11 +102,12 @@ if (count <= 7) {
         element.addEventListener("click", () => {
             count = parseInt(count_f.textContent) + parseInt(count_s.textContent) + parseInt(count_t.textContent);
             if (count > 8) {
-                popup.classList.add('dp-block');
+                // popup.classList.add('dp-block');
             }
         })
     })
-};
+}
+;
 
 // seat table
 const seat_table = document.querySelectorAll('.seat__single');
@@ -114,10 +127,10 @@ seat_table.forEach(element => {
 });
 
 
-
 btn__noti.addEventListener("click", () => {
     popup.classList.remove('dp-block')
     popup.classList.add('dp-none')
 })
 
-console.log(popup)
+// console.log(popup)
+

@@ -30,7 +30,6 @@ public class MovieGetAll extends HttpServlet {
         List<MovieDto> movieDtos = movieService.getAllMovies();
         Gson gson = new Gson();
         String json = gson.toJson(movieDtos);
-        System.out.println("xin chao");
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
