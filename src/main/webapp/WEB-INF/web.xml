@@ -5,9 +5,11 @@
          version="5.0">
     <welcome-file-list>
         <welcome-file>
-<!--            views/admin/movie/movie.jsp-->
-<!--            views/admin/screening/screening.jsp-->
-index1.jsp
+            <!--            views/admin/movie/movie.jsp-->
+            <!--            views/admin/screening/screening.jsp-->
+            index1.jsp
+<!--                        views/admin/chart.jsp-->
+
         </welcome-file>
     </welcome-file-list>
 
@@ -34,4 +36,4 @@ index1.jsp
 
 </web-app>
 
-<!--        pomg aeye jggc gojl-->
+        <!--        pomg aeye jggc gojl-->

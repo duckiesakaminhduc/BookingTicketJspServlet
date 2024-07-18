@@ -29,6 +29,8 @@ public class ScreeningDto {
         this.td_id = td_id;
     }
 
+
+
     public Long getId() {
         return id;
     }

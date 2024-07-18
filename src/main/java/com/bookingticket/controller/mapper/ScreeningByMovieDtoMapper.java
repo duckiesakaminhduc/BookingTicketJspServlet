@@ -14,7 +14,6 @@ public class ScreeningByMovieDtoMapper implements RowMapper<ScreeningByMovieDto>
     @Override
     public ScreeningByMovieDto map(ResultSet rs, StatementContext ctx) throws SQLException {
         ScreeningByMovieDto screeningDto = new ScreeningByMovieDto();
-        screeningDto.setId(rs.getLong("id"));
         screeningDto.setDay(rs.getString("day"));
         screeningDto.setDay_of_week(rs.getString("day_of_week"));
         return screeningDto;

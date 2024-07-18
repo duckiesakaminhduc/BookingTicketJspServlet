@@ -10,6 +10,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+    />
+    <link
             href="https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap"
             rel="stylesheet">
     </link>
@@ -17,8 +23,30 @@
     <title>Booking movie</title>
 </head>
 
+<style>
+    /* Màu nền mặc định */
+    .box-time {
+        background-color: #F3EA28;
+    }
+
+    /* Màu nền khi được nhấp */
+    .box-time.active {
+        background-color: #34eb6e; /* Màu khác khi nhấp */
+    }
+
+    /* Màu nền của các phần tử con khi được nhấp */
+    .box-time.active .date-time,
+    .box-time.active .day-time,
+    .box-time.active div {
+        background-color: #0F172A; /* Màu khác khi nhấp cho các phần tử con */
+    }
+
+
+</style>
 <body>
+<span id="movie_id">${movie.id}</span>
 <div id="wrapper">
+
     <section class="sec__detail">
         <div class="detail">
             <div class="detail__img">
@@ -37,10 +65,12 @@
                 <ul class="detail__info--detail">
                     <li><i class="fa-solid fa-tag" style="color: #FFD43B;"></i><span class="category">Kinh di</span>
                     </li>
-                    <li><i class="fa-solid fa-clock" style="color: #FFD43B;"></i><span class="duration">${movie.duration}'</span></li>
+                    <li><i class="fa-solid fa-clock" style="color: #FFD43B;"></i><span
+                            class="duration">${movie.duration}'</span></li>
                     <li><i class="fa-solid fa-earth-americas" style="color: #FFD43B;"></i><span
                             class="country">${movie.country}</span></li>
-                    <li><i class="fa-solid fa-user-check" style="color: #FFD43B;"></i><span class="recommend">${movie.recommend}.</span></li>
+                    <li><i class="fa-solid fa-user-check" style="color: #FFD43B;"></i><span
+                            class="recommend">${movie.recommend}.</span></li>
                 </ul>
                 <div class="detail__info--describe">
                     <h3>MÔ TẢ</h3>
@@ -71,11 +101,14 @@
                 <h1>LỊCH CHIẾU</h1>
             </div>
             <div class="shtime__header--timelist">
-                <div class="box-time">
-                    <div class="date-time"><span>27/03</span></div>
-                    <div class="day-time"><span>Wednesday</span></div>
-                </div>
+                <c:forEach var="item" items="${screenings}">
+                    <div class="box-time btn schedule_btn">
+                        <div style="border-radius: 5px" class="date-time">${item.day}</div>
+                        <div style="border-radius: 5px" class="day-time">${item.day_of_week}</div>
+                    </div>
+                </c:forEach>
             </div>
+
         </div>
         <div class="shtime__body">
             <div class="shtime__body--header">
@@ -89,27 +122,25 @@
                     </select>
                 </div>
             </div>
-            <ul>
-                <li class="item__cinestar">
-                    <div class="title__cinestar">
-                        <input type="radio" name="cinestar__checked" id="second" checked>
-                        <label for="second">
-                            <h2>Cinestar Quốc Thanh</h2>
-                        </label>
-                        <div class="collapse__shtime">
-                            <p>271 Nguyễn Trãi, Phường Nguyễn Cư Trinh, Quận 1, Thành Phố Hồ Chí Minh
-                            </p>
-                            <div class="tt">Standar</div>
-                            <ul class="list__shtime">
-                                <li class="shtime__item">09:50</li>
-                                <li class="shtime__item">09:50</li>
-                                <li class="shtime__item">09:50</li>
-                                <li class="shtime__item">09:50</li>
-                                <li class="shtime__item">09:50</li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
+            <ul id="list_schedule">
+<%--                <li class="item__cinestar">--%>
+<%--                    <div class="title__cinestar" style="padding-top: 10px">--%>
+<%--                        <input type="radio" name="cinestar__checked" id="second" checked>--%>
+<%--                        <label for="second">--%>
+<%--                            <h2>Cinestar Quốc Thanh</h2>--%>
+<%--                        </label>--%>
+<%--                        <div class="collapse__shtime">--%>
+<%--                            <ul class="list__shtime">--%>
+<%--                                <li class="shtime__item">09:50</li>--%>
+<%--                                <li class="shtime__item">09:50</li>--%>
+<%--                                <li class="shtime__item">09:50</li>--%>
+<%--                                <li class="shtime__item">09:50</li>--%>
+<%--                                <li class="shtime__item">09:50</li>--%>
+<%--                            </ul>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </li>--%>
+
             </ul>
         </div>
     </section>
@@ -934,5 +965,9 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="<c:url value="/template/web/movie_detail.js" />"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+<script src="<c:url value="/views/web/movie_detail.js"/> "></script>
 
 </html>

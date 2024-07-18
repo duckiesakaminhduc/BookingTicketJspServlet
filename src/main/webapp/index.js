@@ -1,10 +1,8 @@
 $(document).ready(function () {
-    console.log("Xxx")
     $.ajax({
         url: 'movie',
         type: "GET",
         success: function (data) {
-            console.log(data);
             let slide_root = document.getElementsByClassName('swiper-wrapper')[0];
             data.forEach(item => {
                 let article = document.createElement('article');

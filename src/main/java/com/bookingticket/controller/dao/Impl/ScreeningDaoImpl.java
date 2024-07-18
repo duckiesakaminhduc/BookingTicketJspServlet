@@ -86,11 +86,12 @@ public class ScreeningDaoImpl implements ScreeningDao {
 
     @Override
     public List<ScreeningByMovieDto> getScreeningsByMovieId(Long id) {
-        String q = "SELECT s.id, DATE_FORMAT(s.`day`, '%d/%m') AS day, DAYNAME(s.`day`) AS day_of_week " +
+        String q = "SELECT DISTINCT DATE_FORMAT(s.`day`, '%d/%m') AS day, DAYNAME(s.`day`) AS day_of_week " +
                 "FROM screening s " +
                 "JOIN movie m ON m.id = s.movie_id " +
                 "JOIN theater_movie tm ON tm.movie_id = m.id " +
-                "where m.id = ?; ";
+                "where m.id = ? " +
+                "ORDER BY day limit 7; ";
         return jdbi.withHandle(handle -> {
             return handle.createQuery(q)
                     .bind(0, id)

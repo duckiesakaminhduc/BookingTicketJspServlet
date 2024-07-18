@@ -1,15 +1,16 @@
-// call api
-// $(document).ready(function () {
-//     console.log('x');
-//     $.ajax({
-//         url: `http://localhost:8080/BookingTicket/movie/detail?movie_id=1`,
-//         type: "GET",
-//         success: function (data) {
-//             console.log(data)
-//
-//         }
-//     })
-// })
+document.addEventListener('DOMContentLoaded', function() {
+    const boxes = document.querySelectorAll('.box-time');
+
+    boxes.forEach(box => {
+        box.addEventListener('click', function() {
+            // Xóa lớp active từ tất cả các phần tử
+            boxes.forEach(b => b.classList.remove('active'));
+
+            // Thêm lớp active cho phần tử đã nhấp
+            this.classList.add('active');
+        });
+    });
+});
 
 //
 const enable__shtime = document.querySelectorAll('.shtime__item');
@@ -109,28 +110,30 @@ if (count <= 7) {
 }
 ;
 
+
+
 // seat table
-const seat_table = document.querySelectorAll('.seat__single');
+// const seat_table = document.querySelectorAll('.seat__single');
+//
+// seat_table.forEach(element => {
+//     element.addEventListener("click", () => {
+//         element.classList.toggle("is__selected");//them/xoa class vao element
+//         img = element.children[0];//lay ra phan tu con dau tien cua element
+//         if (element.classList.contains('is__selected')) {
+//             img.src = '../../template/assets/images/seat-single-selecting.svg';
+//         } else {
+//             img.src = '../../template/assets/images/seat-single.svg';
+//         }
+//         seat = element.children[1];
+//         console.log(seat.innerText)
+//     })
+// });
 
-seat_table.forEach(element => {
-    element.addEventListener("click", () => {
-        element.classList.toggle("is__selected");//them/xoa class vao element
-        img = element.children[0];//lay ra phan tu con dau tien cua element
-        if (element.classList.contains('is__selected')) {
-            img.src = '../../template/assets/images/seat-single-selecting.svg';
-        } else {
-            img.src = '../../template/assets/images/seat-single.svg';
-        }
-        seat = element.children[1];
-        console.log(seat.innerText)
-    })
-});
 
-
-btn__noti.addEventListener("click", () => {
-    popup.classList.remove('dp-block')
-    popup.classList.add('dp-none')
-})
+// btn__noti.addEventListener("click", () => {
+//     popup.classList.remove('dp-block')
+//     popup.classList.add('dp-none')
+// })
 
 // console.log(popup)
 

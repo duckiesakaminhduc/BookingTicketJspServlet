@@ -3,8 +3,6 @@ package com.bookingticket.controller.dto;
 import org.jdbi.v3.core.mapper.reflect.ColumnName;
 
 public class ScreeningByMovieDto {
-    @ColumnName("id")
-    private Long id;
     @ColumnName("day")
     private String day;
     @ColumnName("day_of_week")
@@ -13,19 +11,12 @@ public class ScreeningByMovieDto {
     public ScreeningByMovieDto() {
     }
 
-    public ScreeningByMovieDto(Long id, String day, String day_of_week) {
-        this.id = id;
+    public ScreeningByMovieDto(String day, String day_of_week) {
+
         this.day = day;
         this.day_of_week = day_of_week;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDay() {
         return day;
@@ -46,7 +37,6 @@ public class ScreeningByMovieDto {
     @Override
     public String toString() {
         return "ScreeningByMovieDto{" +
-                "id=" + id +
                 ", day='" + day + '\'' +
                 ", day_of_week='" + day_of_week + '\'' +
                 '}';
