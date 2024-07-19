@@ -20,95 +20,92 @@
     <link rel="stylesheet" href="<c:url value='/template/web/css/styles.css' />">
     <title>Responsive card slider - Bedimcode</title>
 </head>
+<style>
+    * {
+        background-color: #0f172a;
+    }
+    .banner {
+       position: relative;
+    }
+</style>
 <body>
-<section class="container">
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Cinestar"></a>
+        <div class="d-flex">
+            <button class="btn btn-warning me-2">ĐẶT VÉ NGAY</button>
+            <button class="btn btn-danger">ĐẶT BẮP NƯỚC</button>
+        </div>
+        <form class="d-flex mx-auto">
+            <input class="form-control me-2" type="search" placeholder="Tìm phim, rạp" aria-label="Search">
+            <button class="btn btn-outline-light" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="navbar-text">
+            <i class="fas fa-user me-2"></i>
+            VÕ ĐỨC...
+        </div>
+        <div class="navbar-text ms-3">
+            <span class="me-2">VN</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-map-marker-alt me-2"></i>Chọn rạp</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="far fa-calendar-alt me-2"></i>Lịch chiếu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Khuyến mãi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Thuê sự kiện</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Tất cả các giải trí</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Giới thiệu</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<section class="banner">
+    <div class="container">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://cinestar.com.vn/_next/image/?url=https%3A%2F%2Fapi-website.cinestar.com.vn%2Fmedia%2FMageINIC%2Fbannerslider%2Fbap-nuoc-onl.jpg&w=1920&q=75" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="https://cinestar.com.vn/_next/image/?url=https%3A%2F%2Fapi-website.cinestar.com.vn%2Fmedia%2FMageINIC%2Fbannerslider%2F1215wx365h_1_.jpg&w=1920&q=75" class="d-block w-100" alt="...">
+                </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<div class="text-center "><h1 class="mb-0 text-white fw-bold">PHIM ĐANG CHIẾU</h1></div>
+<section class="">
     <div class="card__container swiper">
         <div class="card__content">
             <div class="swiper-wrapper">
-<%--                <article class="card__article swiper-slide">--%>
-<%--                    <div class="card__image">--%>
-<%--                        <img src="assets/img/avatar-1.png" alt="image" class="card__img">--%>
-<%--                        <div class="card__shadow"></div>--%>
-<%--                    </div>--%>
-
-<%--                    <div class="card__data">--%>
-<%--                        <h3 class="card__name">Kell Dawx</h3>--%>
-<%--                        <p class="card__description">--%>
-<%--                            Passionate about development and design,--%>
-<%--                            I carry out projects at the request of users.--%>
-<%--                        </p>--%>
-
-<%--                        <a href="#" class="card__button">View More</a>--%>
-<%--                    </div>--%>
-<%--                </article>--%>
-
-<%--                <article class="card__article swiper-slide">--%>
-<%--                    <div class="card__image">--%>
-<%--                        <img src="assets/img/avatar-2.png" alt="image" class="card__img">--%>
-<%--                        <div class="card__shadow"></div>--%>
-<%--                    </div>--%>
-
-<%--                    <div class="card__data">--%>
-<%--                        <h3 class="card__name">Lotw Fox</h3>--%>
-<%--                        <p class="card__description">--%>
-<%--                            Passionate about development and design,--%>
-<%--                            I carry out projects at the request of users.--%>
-<%--                        </p>--%>
-
-<%--                        <a href="#" class="card__button">View More</a>--%>
-<%--                    </div>--%>
-<%--                </article>--%>
-
-<%--                <article class="card__article swiper-slide">--%>
-<%--                    <div class="card__image">--%>
-<%--                        <img src="assets/img/avatar-3.png" alt="image" class="card__img">--%>
-<%--                        <div class="card__shadow"></div>--%>
-<%--                    </div>--%>
-
-<%--                    <div class="card__data">--%>
-<%--                        <h3 class="card__name">Sara Mit</h3>--%>
-<%--                        <p class="card__description">--%>
-<%--                            Passionate about development and design,--%>
-<%--                            I carry out projects at the request of users.--%>
-<%--                        </p>--%>
-
-<%--                        <a href="#" class="card__button">View More</a>--%>
-<%--                    </div>--%>
-<%--                </article>--%>
-
-<%--                <article class="card__article swiper-slide">--%>
-<%--                    <div class="card__image">--%>
-<%--                        <img src="assets/img/avatar-4.png" alt="image" class="card__img">--%>
-<%--                        <div class="card__shadow"></div>--%>
-<%--                    </div>--%>
-
-<%--                    <div class="card__data">--%>
-<%--                        <h3 class="card__name">Jenny Wert</h3>--%>
-<%--                        <p class="card__description">--%>
-<%--                            Passionate about development and design,--%>
-<%--                            I carry out projects at the request of users.--%>
-<%--                        </p>--%>
-
-<%--                        <a href="#" class="card__button">View More</a>--%>
-<%--                    </div>--%>
-<%--                </article>--%>
-
-<%--                <article class="card__article swiper-slide">--%>
-<%--                    <div class="card__image">--%>
-<%--                        <img src="assets/img/avatar-5.png" alt="image" class="card__img">--%>
-<%--                        <div class="card__shadow"></div>--%>
-<%--                    </div>--%>
-
-<%--                    <div class="card__data">--%>
-<%--                        <h3 class="card__name">Lexa Kin</h3>--%>
-<%--                        <p class="card__description">--%>
-<%--                            Passionate about development and design,--%>
-<%--                            I carry out projects at the request of users.--%>
-<%--                        </p>--%>
-
-<%--                        <a href="#" class="card__button">View More</a>--%>
-<%--                    </div>--%>
-<%--                </article>--%>
             </div>
         </div>
 

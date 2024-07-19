@@ -92,11 +92,23 @@ public class UserDaoImpl implements UserDao {
         return re1 > 0;
     }
 
+    @Override
+    public Long getUserId(String username) {
+        String q = "select id from user where username = ?";
+        Long id = jdbi.withHandle(handle -> {
+            return handle.createQuery(q)
+                    .bind(0, username)
+                    .mapTo(Long.class)
+                    .findOnly();
+        });
+        return id;
+    }
+
 
     public static void main(String[] args) {
         UserDaoImpl userDao = new UserDaoImpl();
-        System.out.println(userDao.resetPassword("voducminh39@gmail.com", "1234"));
-
+//        System.out.println(userDao.resetPassword("voducminh39@gmail.com", "1234"));
+        System.out.println(userDao.getUserId("minh"));
 
     }
 

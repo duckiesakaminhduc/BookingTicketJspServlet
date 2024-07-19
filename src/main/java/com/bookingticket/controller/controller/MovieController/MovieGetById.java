@@ -6,6 +6,7 @@ import com.bookingticket.controller.dao.MovieDao;
 import com.bookingticket.controller.dao.ScreeningDao;
 import com.bookingticket.controller.dto.MovieDto;
 import com.bookingticket.controller.dto.ScreeningByMovieDto;
+import com.bookingticket.controller.dto.TicketSingleton;
 import com.bookingticket.controller.service.Impl.MovieServiceImpl;
 import com.bookingticket.controller.service.Impl.ScreeningServiceImpl;
 import com.bookingticket.controller.service.MovieService;
@@ -49,6 +50,9 @@ public class MovieGetById extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/views/web/movie_detail.jsp");
         dispatcher.forward(req, resp);
 
+        TicketSingleton t = TicketSingleton.getInstance();
+        t.setMovie_id(movieDto.getId());
+        System.out.println(t.toString());
         System.out.println("Dang tỏng movie detail");
 
     }

@@ -33,4 +33,9 @@ public class UserServiceImp implements UserService {
     public boolean resetPassword(String email, String password) {
         return userDao.resetPassword(email,password);
     }
+
+    @Override
+    public Long getUserId(String username) {
+        return userDao.getUserId(username);
+    }
 }

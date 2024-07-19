@@ -81,4 +81,9 @@ public class ScreeningAdd extends HttpServlet {
 
         System.out.println("XIN CHAO");
     }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
 }

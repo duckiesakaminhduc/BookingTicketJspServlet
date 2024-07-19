@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +44,8 @@
 
 </style>
 <body>
-<span id="movie_id">${movie.id}</span>
+<%@include file="../../template/web/header/header.jsp" %>
+<span style="display: none" id="movie_id">${movie.id}</span>
 <div id="wrapper">
 
     <section class="sec__detail">
@@ -123,23 +124,23 @@
                 </div>
             </div>
             <ul id="list_schedule">
-<%--                <li class="item__cinestar">--%>
-<%--                    <div class="title__cinestar" style="padding-top: 10px">--%>
-<%--                        <input type="radio" name="cinestar__checked" id="second" checked>--%>
-<%--                        <label for="second">--%>
-<%--                            <h2>Cinestar Quốc Thanh</h2>--%>
-<%--                        </label>--%>
-<%--                        <div class="collapse__shtime">--%>
-<%--                            <ul class="list__shtime">--%>
-<%--                                <li class="shtime__item">09:50</li>--%>
-<%--                                <li class="shtime__item">09:50</li>--%>
-<%--                                <li class="shtime__item">09:50</li>--%>
-<%--                                <li class="shtime__item">09:50</li>--%>
-<%--                                <li class="shtime__item">09:50</li>--%>
-<%--                            </ul>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </li>--%>
+                <%--                <li class="item__cinestar">--%>
+                <%--                    <div class="title__cinestar" style="padding-top: 10px">--%>
+                <%--                        <input type="radio" name="cinestar__checked" id="second" checked>--%>
+                <%--                        <label for="second">--%>
+                <%--                            <h2>Cinestar Quốc Thanh</h2>--%>
+                <%--                        </label>--%>
+                <%--                        <div class="collapse__shtime">--%>
+                <%--                            <ul class="list__shtime">--%>
+                <%--                                <li class="shtime__item">09:50</li>--%>
+                <%--                                <li class="shtime__item">09:50</li>--%>
+                <%--                                <li class="shtime__item">09:50</li>--%>
+                <%--                                <li class="shtime__item">09:50</li>--%>
+                <%--                                <li class="shtime__item">09:50</li>--%>
+                <%--                            </ul>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </li>--%>
 
             </ul>
         </div>
@@ -153,11 +154,11 @@
             <div class="ticket__item">
                 <div>NGƯỜI LỚN</div>
                 <div>--- ĐƠN ---</div>
-                <div>45,000</div>
+                <div class="value_ticket">45,000</div>
                 <div class="content__bottom">
                     <div class="count">
                         <div class="minus_f">-</div>
-                        <div class="count_f">0</div>
+                        <div class="amount_ticket count_f">0</div>
                         <div class="plus_f">+</div>
                     </div>
                 </div>
@@ -165,11 +166,11 @@
             <div class="ticket__item">
                 <div>NGƯỜI LỚN</div>
                 <div>--- ĐƠN ---</div>
-                <div>45,000</div>
+                <div class="value_ticket">65,000</div>
                 <div class="content__bottom">
                     <div class="count">
                         <div class="minus_s">-</div>
-                        <div class="count_s">0</div>
+                        <div class="amount_ticket count_s">0</div>
                         <div class="plus_s">+</div>
                     </div>
                 </div>
@@ -177,11 +178,11 @@
             <div class="ticket__item">
                 <div>NGƯỜI LỚN</div>
                 <div>--- ĐÔI ---</div>
-                <div>45,000</div>
+                <div class="value_ticket">95,000</div>
                 <div class="content__bottom">
                     <div class="count">
                         <div class="minus_t">-</div>
-                        <div class="count_t">0</div>
+                        <div class="amount_ticket count_t">0</div>
                         <div class="plus_t">+</div>
                     </div>
                 </div>
@@ -915,52 +916,16 @@
                 </td>
             </tr>
         </div>
-        <div class="seat__table">
-            <tr class="seat__row">
-                <td class="seat__name">M</td>
-                <td>
-                    <div class="seat__couple">
-                        <img src="../../template/assets/images/seat-couple.svg" alt="">
-                        <span class="seate__single__name">M01</span>
-                    </div>
-                </td>
-                <td>
-                    <div class="empty couple"></div>
-                </td>
-                <td>
-                    <div class="empty couple"></div>
-                </td>
-                <td>
-                    <div class="seat__couple">
-                        <img src="../../template/assets/images/seat-couple.svg" alt="">
-                        <span class="seate__single__name">M02</span>
-                    </div>
-                </td>
-                <td>
-                    <div class="empty"></div>
-                </td>
-                <td>
-                    <div class="empty"></div>
-                </td>
-                <td>
-                    <div class="empty"></div>
-                </td>
-                <td>
-                    <div class="empty"></div>
-                </td>
-                <td>
-                    <div class="empty"></div>
-                </td>
-                <td>
-                    <div class="empty"></div>
-                </td>
-            </tr>
-        </div>
 
     </div>
 </div>
 <div class="shtime__footer"></div>
 <p>git hub</p>
+<%@include file="../combo.jsp" %>
+<div id="nav_bottom" style="display: none">
+    <%@include file="../nav-bottom.jsp" %>
+</div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 

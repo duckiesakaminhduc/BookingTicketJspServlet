@@ -8,6 +8,7 @@ import com.bookingticket.controller.dao.UserDao;
 import com.bookingticket.controller.service.Impl.UserServiceImp;
 import com.bookingticket.controller.service.UserService;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -43,8 +44,12 @@ public class Login extends HttpServlet {
 
             ss.setAttribute("token", JwtUtils.createJWT(role));
             ss.setAttribute("role", role);
-
+            ss.setAttribute("username", username);
             System.out.println(role);
+
+            req.setAttribute("username", username);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("/getUserId");
+            dispatcher.forward(req, resp);
         } else {
             System.out.println("sai thong tin dang nhap");
             resp.sendRedirect("views/login.jsp");
@@ -52,5 +57,6 @@ public class Login extends HttpServlet {
 
         String re1 = (String) ss.getAttribute("token");
         System.out.println(re1);
+
     }
 }

@@ -2,8 +2,11 @@ package com.bookingticket.controller.dao.Impl;
 
 import com.bookingticket.controller.dao.SeatDao;
 import com.bookingticket.controller.database.Database;
+import com.bookingticket.controller.dto.SeatDto;
 import com.bookingticket.controller.mapper.SeatDtoMapper;
 import org.jdbi.v3.core.Jdbi;
+
+import java.util.List;
 
 public class SeatDaoImpl implements SeatDao {
     Jdbi jdbi;
@@ -26,9 +29,22 @@ public class SeatDaoImpl implements SeatDao {
         return count > 0;
     }
 
+    @Override
+    public List<SeatDto> getAllSeats(Long screening_id, Long room_id) {
+        String q = "SELECT * FROM `seat` where screening_id = ? and room_id = ? ";
+        List<SeatDto> seats = jdbi.withHandle(handle -> {
+            return handle.createQuery(q)
+                    .bind(0, screening_id)
+                    .bind(1, room_id)
+                    .mapTo(SeatDto.class)
+                    .list();
+        });
+        return seats;
+    }
+
     public static void main(String[] args) {
         SeatDao seatDao = new SeatDaoImpl();
-        System.out.println(seatDao.createSeat("A01", 1l, 1l));
-        ;
+//        System.out.println(seatDao.createSeat("A01", 1l, 1l));
+        System.out.println(seatDao.getAllSeats(1l,1l));
     }
 }

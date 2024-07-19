@@ -18,4 +18,6 @@ public interface UserDao {
     Map<String, List<String>> mapRoles(String username);
 
     public boolean resetPassword(String email,String password);
+
+    public Long getUserId(String username);
 }
