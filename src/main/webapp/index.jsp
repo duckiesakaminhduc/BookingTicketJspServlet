@@ -29,7 +29,7 @@
     }
 </style>
 <body>
-
+<a href="views/admin/ticket.jsp">VÉ</a>
 <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"><img src="https://cinestar.com.vn/_next/image/?url=%2Fassets%2Fimages%2Fheader-logo.png&w=1920&q=75" alt="Cinestar"></a>

@@ -3,6 +3,7 @@ package com.bookingticket.controller.controller.ZaloPay;
 import com.bookingticket.controller.dto.TicketSingleton;
 import org.json.JSONObject;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,11 +22,12 @@ public class ZaloPayService extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession ss = req.getSession();
         int amount = Integer.parseInt(req.getParameter("amount"));
-//        String app_user = req.getParameter("app_user");
-        String app_user = String.valueOf(ss.getAttribute("username"));
+        System.out.println("amount" + amount);
+        String app_user = req.getParameter("app_user");
+//        String app_user = String.valueOf(ss.getAttribute("username"));
 
         String description = req.getParameter("description");
-
+        TicketSingleton.getInstance().setTotal_price(amount);
 //        String item = req.getParameter("item");
         try {
 //            JSONObject jsonObjectResult = CreateOrder.createOrderTicket(amount, app_user, description);
@@ -37,6 +39,10 @@ public class ZaloPayService extends HttpServlet {
         } catch (Exception e) {
             resp.getWriter().write("Error" + e);
         }
+
+//        RequestDispatcher dispatcher = req.getRequestDispatcher("/views/admin/ticket.jsp");
+//        dispatcher.forward(req,resp);
+//        resp.sendRedirect("/views/admin/ticket.jsp");
 
     }
 

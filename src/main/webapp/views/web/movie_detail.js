@@ -200,31 +200,6 @@ $(document).ready(function () {
     })
 })
 
-// $(document).ready(function () {
-//     let btn_order_submit = document.querySelector(".btn_order_submit");
-//     btn_order_submit.addEventListener('click', (e) => {
-//         let header = document.querySelector(".header");
-//         let movie_info = header.querySelector(".movie-info");
-//         let movie_name = movie_info.querySelector("h1").textContent;
-//         let seats = movie_info.querySelector(".seat_info").textContent;
-//         let description = "ĐẶT PHIM: " + movie_name + "|" + seats;
-//         let amount = header.querySelector(".total").textContent;
-//         $.ajax({
-//             url: `http://localhost:8080/BookingTicket/create_ticket`,
-//             type: "POST",
-//             data: {
-//                 "amount": amount,
-//                 "app_user": "user_name",
-//                 "description": description
-//             },
-//             success: function (data) {
-//                 let order_url = data.order_url;
-//                 window.location.href = order_url;
-//             }
-//
-//         })
-//     })
-// })
 $(document).ready(function () {
     let btn_order_submit = document.querySelector(".btn_order_submit");
     btn_order_submit.addEventListener('click', (e) => {
@@ -233,22 +208,25 @@ $(document).ready(function () {
         let movie_name = movie_info.querySelector("h1").textContent;
         let seats = movie_info.querySelector(".seat_info").textContent;
         let description = "ĐẶT PHIM: " + movie_name + "|" + seats;
-        let amount = parseInt(header.querySelector(".total").textContent);
-        console.log(description, amount)
-        $.ajax({
-            url: `http://localhost:8080/BookingTicket/create_ticket`,
-            type: "POST",
-            contentType: "application/json;charset=UTF-8",
-            data: {
-                "amount": amount,
-                "app_user": "user_name",
-                "description": description
-            },
-            success: function (data) {
-                let order_url = data.order_url;
-                window.location.href = order_url;
-            }
+        let amount = header.querySelector(".total").textContent;
+        console.log("description", description);
+        console.log("amount", amount);
 
-        })
-    })
-})
+        // Loại bỏ "VND" và khoảng trắng từ chuỗi amount
+        amount = amount.replace("VND", "").trim();
+
+        $.ajax({
+            url: `http://localhost:8080/BookingTicket/create_ticket?amount=${amount}&app_user=ducminh1&description=description`,
+            type: "POST",
+            // data: {
+            //     "amount": amount,
+            //     "app_user": "app_user",
+            //     "description": description
+            // },
+            success: function (data) {
+                let url = data.order_url;
+                window.location.href = url;
+            }
+        });
+    });
+});

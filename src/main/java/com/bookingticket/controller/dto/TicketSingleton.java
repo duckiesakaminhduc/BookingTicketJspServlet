@@ -11,7 +11,12 @@ public class TicketSingleton {
 
     private Long id;
     private LocalDateTime create_at;
+    private LocalDateTime modified_at;
+
     private String create_by;
+    private String modified_by;
+
+
     private Long user_id;
     private Long room_id;
     private Long combo_id;
@@ -117,12 +122,30 @@ public class TicketSingleton {
 
     }
 
+    public LocalDateTime getModified_at() {
+        return modified_at;
+    }
+
+    public void setModified_at(LocalDateTime modified_at) {
+        this.modified_at = modified_at;
+    }
+
+    public String getModified_by() {
+        return modified_by;
+    }
+
+    public void setModified_by(String modified_by) {
+        this.modified_by = modified_by;
+    }
+
     @Override
     public String toString() {
         return "TicketSingleton{" +
                 "id=" + id +
                 ", create_at=" + create_at +
+                ", modified_at=" + modified_at +
                 ", create_by='" + create_by + '\'' +
+                ", modified_by='" + modified_by + '\'' +
                 ", user_id=" + user_id +
                 ", room_id=" + room_id +
                 ", combo_id=" + combo_id +

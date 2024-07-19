@@ -36,8 +36,9 @@ public class CreateOrder {
         Random rand = new Random();
         int random_id = rand.nextInt(1000000);
         final Map embed_data = new HashMap() {{
-            put("redirecturl", "https://www.youtube.com/");
-//            put("redirecturl", "https://59ae-171-243-48-93.ngrok-free.app/BookingTicket/callback");
+//            put("redirecturl", "https://www.youtube.com/");
+//            put("redirecturl", "http://localhost:8080/BookingTicket/create_ticket");
+            put("redirecturl", "http://localhost:8080/BookingTicket/addTicket");
 
         }};
 

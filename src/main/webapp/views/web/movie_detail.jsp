@@ -45,6 +45,7 @@
 </style>
 <body>
 <%@include file="../../template/web/header/header.jsp" %>
+
 <span style="display: none" id="movie_id">${movie.id}</span>
 <div id="wrapper">
 

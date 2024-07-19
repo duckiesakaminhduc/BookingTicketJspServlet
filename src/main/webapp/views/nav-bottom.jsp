@@ -115,7 +115,7 @@
         <span id="countdown">05:00</span>
     </div>
     <div class="total">
-        <span>0 VND</span>
+        <span>0</span>
     </div>
     <button class="btn_order_submit">ĐẶT VÉ</button>
 </div>

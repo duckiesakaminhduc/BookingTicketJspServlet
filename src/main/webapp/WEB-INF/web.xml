@@ -9,6 +9,7 @@
             <!--            views/admin/screening/screening.jsp-->
             index1.jsp
 <!--                        views/admin/chart.jsp-->
+<!--            views/admin/ticket.jsp-->
 
         </welcome-file>
     </welcome-file-list>
